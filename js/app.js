@@ -1,0 +1,514 @@
+/**
+ * Dicatec Direção Hidráulica — Aplicação Principal
+ * Vanilla JS ES6+, sem frameworks
+ */
+
+// Estado global
+const state = {
+  dados: [],
+  filtros: {
+    busca: '',
+    marcas: new Set(),
+    tipos: new Set(),
+    fabricantes: new Set()
+  },
+  resultadoCount: 0
+};
+
+// Referências DOM (cache)
+const dom = {};
+
+// =========================================
+// INICIALIZAÇÃO
+// =========================================
+function init() {
+  cacheDOM();
+  bindEvents();
+
+  // Carregar dados do data.js (variável global catalogoCaixasDirecao)
+  if (typeof catalogoCaixasDirecao !== 'undefined') {
+    state.dados = catalogoCaixasDirecao;
+  } else {
+    console.error('Dados não encontrados: catalogoCaixasDirecao não está definido.');
+    state.dados = [];
+  }
+
+  renderSidebar();
+  aplicarFiltros();
+}
+
+function cacheDOM() {
+  dom.searchInput = document.getElementById('searchInput');
+  dom.resultsGrid = document.getElementById('resultsGrid');
+  dom.resultsCount = document.getElementById('resultsCount');
+  dom.sidebarFilters = document.getElementById('sidebarFilters');
+  dom.modalOverlay = document.getElementById('modalOverlay');
+  dom.modalContent = document.getElementById('modalContent');
+  dom.modalBody = document.getElementById('modalBody');
+  dom.btnResetFilters = document.getElementById('btnResetFilters');
+  dom.chips = document.querySelectorAll('.filter-chip');
+}
+
+function bindEvents() {
+  // Busca em tempo real
+  dom.searchInput.addEventListener('input', debounce((e) => {
+    state.filtros.busca = normalizarTexto(e.target.value);
+    aplicarFiltros();
+  }, 150));
+
+  // Reset de filtros
+  dom.btnResetFilters.addEventListener('click', () => {
+    resetarFiltros();
+  });
+
+  // Chips de filtro rápido
+  dom.chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tipo = chip.dataset.filter;
+      const valor = chip.dataset.value;
+      toggleChip(chip, tipo, valor);
+    });
+  });
+
+  // Fechar modal por overlay
+  dom.modalOverlay.addEventListener('click', (e) => {
+    if (e.target === dom.modalOverlay) {
+      fecharModal();
+    }
+  });
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') fecharModal();
+  });
+}
+
+// =========================================
+// FUNÇÕES UTILITÁRIAS
+// =========================================
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+function normalizarTexto(texto) {
+  return texto
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function formatarPreco(valor) {
+  return valor.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  });
+}
+
+function obterLabelTipo(tipo) {
+  const map = {
+    hidraulica: 'Hidráulica',
+    mecanica: 'Mecânica',
+    eletrica: 'Elétrica EPS'
+  };
+  return map[tipo] || tipo;
+}
+
+function obterIconeTipo(tipo) {
+  const map = {
+    hidraulica: 'droplet',
+    mecanica: 'cog',
+    eletrica: 'zap'
+  };
+  return map[tipo] || 'box';
+}
+
+// =========================================
+// SIDEBAR — FILTROS
+// =========================================
+function renderSidebar() {
+  const marcas = extrairValoresUnicos('marcaVeiculo');
+  const tipos = extrairValoresUnicos('tipoCaixa');
+  const fabricantes = extrairValoresUnicos('fabricanteCaixa');
+
+  const grupos = [
+    { label: 'Marca do Veículo', key: 'marca', options: marcas },
+    { label: 'Tipo de Caixa', key: 'tipo', options: tipos },
+    { label: 'Fabricante', key: 'fabricante', options: fabricantes }
+  ];
+
+  dom.sidebarFilters.innerHTML = grupos.map(grupo => `
+    <div class="filter-group">
+      <div class="filter-group-label">${grupo.label}</div>
+      <div class="filter-options" data-group="${grupo.key}">
+        ${grupo.options.map(opt => `
+          <label class="filter-option" data-value="${opt}">
+            <input type="checkbox" value="${opt}" data-group="${grupo.key}">
+            <span class="filter-name">${opt}</span>
+            <span class="filter-count">${contarPorFiltro(grupo.key, opt)}</span>
+          </label>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // Bind eventos nos checkboxes
+  dom.sidebarFilters.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', (e) => {
+      const grupo = e.target.dataset.group;
+      const valor = e.target.value;
+      const checked = e.target.checked;
+
+      const setMap = {
+        marca: state.filtros.marcas,
+        tipo: state.filtros.tipos,
+        fabricante: state.filtros.fabricantes
+      };
+
+      if (checked) {
+        setMap[grupo].add(valor);
+      } else {
+        setMap[grupo].delete(valor);
+      }
+
+      aplicarFiltros();
+    });
+  });
+}
+
+function extrairValoresUnicos(campo) {
+  const valores = new Set(state.dados.map(item => item[campo]));
+  return Array.from(valores).sort();
+}
+
+function contarPorFiltro(grupo, valor) {
+  const campoMap = {
+    marca: 'marcaVeiculo',
+    tipo: 'tipoCaixa',
+    fabricante: 'fabricanteCaixa'
+  };
+  return state.dados.filter(item => item[campoMap[grupo]] === valor).length;
+}
+
+// =========================================
+// CHIPS (FILTROS RÁPIDOS DO HEADER)
+// =========================================
+function toggleChip(chip, tipo, valor) {
+  const ativo = chip.classList.toggle('active');
+  const setMap = {
+    marca: state.filtros.marcas,
+    tipo: state.filtros.tipos,
+    fabricante: state.filtros.fabricantes
+  };
+
+  if (ativo) {
+    setMap[tipo].add(valor);
+  } else {
+    setMap[tipo].delete(valor);
+  }
+
+  // Sincronizar com checkbox da sidebar
+  sincronizarCheckbox(tipo, valor, ativo);
+  aplicarFiltros();
+}
+
+function sincronizarCheckbox(tipo, valor, checked) {
+  const checkbox = dom.sidebarFilters.querySelector(`input[data-group="${tipo}"][value="${valor}"]`);
+  if (checkbox) checkbox.checked = checked;
+}
+
+// =========================================
+// FILTROS — LÓGICA PRINCIPAL
+// =========================================
+function aplicarFiltros() {
+  const filtrados = state.dados.filter(item => {
+    // Busca textual
+    if (state.filtros.busca) {
+      const textoBusca = state.filtros.busca;
+      const campos = [
+        item.marcaVeiculo,
+        item.modeloVeiculo,
+        item.anos,
+        item.fabricanteCaixa,
+        ...item.codigos,
+        ...item.motorizacoes
+      ].join(' ').toLowerCase();
+      const textoNormalizado = normalizarTexto(campos);
+      if (!textoNormalizado.includes(textoBusca)) return false;
+    }
+
+    // Filtros de marca
+    if (state.filtros.marcas.size > 0 && !state.filtros.marcas.has(item.marcaVeiculo)) {
+      return false;
+    }
+
+    // Filtros de tipo
+    if (state.filtros.tipos.size > 0 && !state.filtros.tipos.has(item.tipoCaixa)) {
+      return false;
+    }
+
+    // Filtros de fabricante
+    if (state.filtros.fabricantes.size > 0 && !state.filtros.fabricantes.has(item.fabricanteCaixa)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  state.resultadoCount = filtrados.length;
+  renderResultados(filtrados);
+  atualizarContador();
+}
+
+function resetarFiltros() {
+  state.filtros.busca = '';
+  state.filtros.marcas.clear();
+  state.filtros.tipos.clear();
+  state.filtros.fabricantes.clear();
+
+  dom.searchInput.value = '';
+  dom.chips.forEach(c => c.classList.remove('active'));
+  dom.sidebarFilters.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.checked = false;
+  });
+
+  aplicarFiltros();
+}
+
+// =========================================
+// RENDERIZAÇÃO — GRID
+// =========================================
+function renderResultados(lista) {
+  if (lista.length === 0) {
+    dom.resultsGrid.innerHTML = renderEmptyState();
+    return;
+  }
+
+  dom.resultsGrid.innerHTML = lista.map((item, idx) => renderCard(item, idx)).join('');
+
+  // Bind cliques nos cards
+  dom.resultsGrid.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      abrirModal(id);
+    });
+  });
+}
+
+function renderCard(item, idx) {
+  const delay = Math.min(idx * 0.05, 0.5);
+  const tipoLabel = obterLabelTipo(item.tipoCaixa);
+  const tipoIcone = obterIconeTipo(item.tipoCaixa);
+  const codigosVisiveis = item.codigos.slice(0, 3);
+  const maisCodigos = item.codigos.length > 3 ? `+${item.codigos.length - 3}` : '';
+
+  return `
+    <article class="card" data-id="${item.id}" style="animation-delay: ${delay}s">
+      <div class="card-header">
+        <span class="card-brand">${item.marcaVeiculo}</span>
+        <span class="card-type ${item.tipoCaixa}">
+          <span class="chip-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${getLucideIcon(tipoIcone)}</svg></span>
+          ${tipoLabel}
+        </span>
+      </div>
+      <h3 class="card-title">${item.modeloVeiculo}</h3>
+      <div class="card-years">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${item.anos}
+      </div>
+      <div class="card-info">
+        <div class="card-info-row">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span class="info-label">Caixa:</span>
+          <span class="info-value">${item.fabricanteCaixa}</span>
+        </div>
+        <div class="card-info-row">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span class="info-label">Motor:</span>
+          <span class="info-value">${item.motorizacoes.slice(0, 3).join(', ')}${item.motorizacoes.length > 3 ? '...' : ''}</span>
+        </div>
+        <div class="card-info-row">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <span class="info-label">Sintoma:</span>
+          <span class="info-value">${item.sintomasComuns[0]}</span>
+        </div>
+      </div>
+      <div class="card-codes">
+        ${codigosVisiveis.map(c => `<span class="code-tag">${c}</span>`).join('')}
+        ${maisCodigos ? `<span class="code-tag">${maisCodigos}</span>` : ''}
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price-label">Média mercado</div>
+          <div class="card-price">${formatarPreco(item.precoEstimadoPeca)}</div>
+        </div>
+        <button class="card-btn" aria-label="Ver detalhes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Detalhes
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderEmptyState() {
+  return `
+    <div class="empty-state" style="grid-column: 1 / -1;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <h3>Nenhum resultado encontrado</h3>
+      <p>Tente ajustar os filtros ou usar termos diferentes na busca. Você pode buscar por marca, modelo, código ou ano.</p>
+    </div>
+  `;
+}
+
+function atualizarContador() {
+  dom.resultsCount.innerHTML = `<strong>${state.resultadoCount}</strong> ${state.resultadoCount === 1 ? 'caixa encontrada' : 'caixas encontradas'}`;
+}
+
+// =========================================
+// MODAL
+// =========================================
+function abrirModal(id) {
+  const item = state.dados.find(d => d.id === id);
+  if (!item) return;
+
+  dom.modalBody.innerHTML = renderModalContent(item);
+  dom.modalOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Bind botão fechar
+  const btnFechar = document.getElementById('btnModalClose');
+  if (btnFechar) btnFechar.addEventListener('click', fecharModal);
+}
+
+function fecharModal() {
+  dom.modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function renderModalContent(item) {
+  const tipoLabel = obterLabelTipo(item.tipoCaixa);
+
+  return `
+    <div class="modal-header">
+      <div class="modal-title-area">
+        <span class="modal-brand-badge">${item.marcaVeiculo}</span>
+        <h2 class="modal-title">${item.modeloVeiculo}</h2>
+      </div>
+      <button class="modal-close" id="btnModalClose" aria-label="Fechar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Info Grid -->
+      <div class="modal-section">
+        <div class="modal-info-grid">
+          <div class="modal-info-item">
+            <div class="label">Anos</div>
+            <div class="value">${item.anos}</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="label">Tipo</div>
+            <div class="value">${tipoLabel}</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="label">Fabricante</div>
+            <div class="value">${item.fabricanteCaixa}</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="label">Preço Estimado</div>
+            <div class="value price">${formatarPreco(item.precoEstimadoPeca)}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Códigos -->
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          Códigos de Referência
+        </div>
+        <div class="tags-list">
+          ${item.codigos.map(c => `<span class="tag code">${c}</span>`).join('')}
+        </div>
+      </div>
+
+      <!-- Motorizações -->
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          Motorizações
+        </div>
+        <div class="tags-list">
+          ${item.motorizacoes.map(m => `<span class="tag motor">${m}</span>`).join('')}
+        </div>
+      </div>
+
+      <!-- Aplicações -->
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Aplicações Compatíveis
+        </div>
+        <div class="aplicacoes-list">
+          ${item.aplicacoes.map(a => `
+            <div class="aplicacao-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              ${a}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Sintomas -->
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          Sintomas Comuns
+        </div>
+        <div class="tags-list">
+          ${item.sintomasComuns.map(s => `<span class="tag symptom">${s}</span>`).join('')}
+        </div>
+      </div>
+
+      <!-- Observações -->
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Dicas Técnicas e Observações
+        </div>
+        <div class="observacoes-box">
+          ${item.observacoes}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+      <button class="modal-btn primary" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir
+      </button>
+    </div>
+  `;
+}
+
+// =========================================
+// LUCIDE ICONS (SVG PATHS INLINE)
+// =========================================
+function getLucideIcon(name) {
+  const icons = {
+    droplet: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+    cog: '<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/>',
+    zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    box: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>'
+  };
+  return icons[name] || icons.box;
+}
+
+// =========================================
+// START
+// =========================================
+document.addEventListener('DOMContentLoaded', init);
