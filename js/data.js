@@ -1,314 +1,2163 @@
-// Banco de dados mock — Caixas de Direção
-// Sistema Dicatec Direção Hidráulica
+// Dicatec Direção Hidráulica — Banco de Dados Técnicos
+// Dados compilados de: Fort Distribuidora, TDS Parts, Mercado Livre, catálogos técnicos
+// Gerado em: 2026-07-07
 
 const catalogoCaixasDirecao = [
   {
-    id: "fiat-palio-siena-strada-trw-01",
-    marcaVeiculo: "Fiat",
-    modeloVeiculo: "Palio / Siena / Strada",
-    anos: "2001-2016",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "TRW",
-    codigos: ["5173.7077", "5180.3201", "PSA5202", "TRW12030"],
-    motorizacoes: ["1.0 Fire", "1.3 Fire", "1.4 Fire", "1.6 16V"],
-    aplicacoes: ["Palio Fire 2001-2016", "Siena Fire 2001-2016", "Strada Fire 2002-2016", "Palio Weekend 2001-2016"],
-    sintomasComuns: ["Vazamento no retentor da cremalheira", "Folga na cremalheira", "Ruído ao girar o volante parado", "Vazamento nas borrachas de proteção"],
-    observacoes: "Atentar para a posição do anel trava ao desmontar. Na reposição do retentor, usar graxa compatível com borracha NBR. A cremalheira do Fire 1.0/1.3 tem passo diferente da 1.6 16V. Sempre verificar folga axial do pinhão após montagem. O selim deve ser ajustado com torque de 3,5 a 4,5 kgf.m. Sempre trocar fluido hidráulico junto.",
-    precoEstimadoPeca: 850.00
+    "id": "-palio--1--gera--o--1",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Palio (1ª geração)",
+    "anos": "1996–2000",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "16150844S",
+      "CX33844",
+      "16900162S"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.5",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Palio",
+      "Siena",
+      "Weekend",
+      "Strada"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "ruído",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Palio (1ª geração). Período: 1996–2000. Motorizações: 1.0 / 1.5 / 1.6.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "fiat-palio-siena-strada-dhb-01",
-    marcaVeiculo: "Fiat",
-    modeloVeiculo: "Palio / Siena / Strada",
-    anos: "1996-2000",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-12000", "5173.3010", "5173.3020"],
-    motorizacoes: ["1.0 MPi", "1.5", "1.6"],
-    aplicacoes: ["Palio 1996-2000", "Siena 1998-2000", "Strada 1999-2000", "Palio Weekend 1997-2000"],
-    sintomasComuns: ["Vazamento pelo eixo do pinhão", "Direção pesada", "Batida na direção ao passar em buraco"],
-    observacoes: "Modelo anterior ao TRW. Pinhão com estrias menores. Na reposição de retentor do eixo, usar kit com bucha e anéis. Cuidado com a pressão de teste: não ultrapassar 70 bar. Tubos de alta pressão com rosca fina — evitar vedar com teflon. Usar fluido ATF Dexron III ou similar. A cremalheira desse modelo pode apresentar desgaste prematuro acima de 150 mil km.",
-    precoEstimadoPeca: 720.00
+    "id": "-palio---siena---week-2",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Palio / Siena / Weekend",
+    "anos": "2001–2017",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB / Jtekt",
+    "codigos": [
+      "16900162S",
+      "16900566S",
+      "A0039376S"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.3",
+      "1.4",
+      "1.6",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Palio",
+      "Siena",
+      "Strada",
+      "Idea",
+      "Weekend"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB / Jtekt para Palio / Siena / Weekend. Período: 2001–2017. Motorizações: 1.0 / 1.3 / 1.4 / 1.6 / 1.8.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "vw-gol-voyage-dhb-08",
-    marcaVeiculo: "Volkswagen",
-    modeloVeiculo: "Gol / Voyage / Saveiro",
-    anos: "2008-2022",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-52050", "5U1.423.051", "5U1423051", "DHB52050"],
-    motorizacoes: ["1.0", "1.6", "1.6 MSI", "1.0 TSI"],
-    aplicacoes: ["Gol G5/G6/G7 2008-2022", "Voyage G5/G6/G7 2009-2022", "Saveiro G5/G6/G7 2009-2022", "Fox 2010-2014"],
-    sintomasComuns: ["Vazamento retentor cremalheira", "Ruído ao esterçar", "Folga excessiva no volante", "Direção pesada em baixa rotação"],
-    observacoes: "Modelo DHB usado em toda linha VW G5 em diante. A cremalheira tem sistema de pré-carga ajustável. Ao desmontar, marcar a posição do selim para manter ajuste. O retentor da cremalheira é crítico — vazamento comum acima de 100 mil km. Usar fluido VW G 004 000 ou equivalente. A bucha do braço pitman pode criar folga em terrenos irregulares. Verificar também o estado da bomba hidráulica.",
-    precoEstimadoPeca: 920.00
+    "id": "-uno--antigo--3",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Uno (antigo)",
+    "anos": "1991–2013",
+    "tipoCaixa": "mecanica",
+    "fabricanteCaixa": "DHB / TRW",
+    "codigos": [
+      "15900137S",
+      "21245"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.3",
+      "1.4",
+      "1.5"
+    ],
+    "aplicacoes": [
+      "Uno",
+      "Premio",
+      "Elba",
+      "Fiorino"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "ruído ao esterçar"
+    ],
+    "observacoes": "Caixa mecanica DHB / TRW para Uno (antigo). Período: 1991–2013. Motorizações: 1.0 / 1.3 / 1.4 / 1.5.",
+    "precoEstimadoPeca": 400.0
   },
   {
-    id: "vw-gol-voyage-dhb-94",
-    marcaVeiculo: "Volkswagen",
-    modeloVeiculo: "Gol / Parati / Saveiro",
-    anos: "1994-2008",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-52000", "377.422.051", "377422051R", "DHB52000"],
-    motorizacoes: ["1.0", "1.6", "1.8", "2.0"],
-    aplicacoes: ["Gol G1/G2/G3/G4 1994-2008", "Parati 1996-2008", "Saveiro G1/G2/G3/G4 1998-2008", "Voyage G1 1994-1996"],
-    sintomasComuns: ["Vazamento completo da caixa", "Direção dura", "Folga no braço pitman", "Ruído metálico ao esterçar"],
-    observacoes: "Caixa DHB usada em toda linha VW por mais de uma década. Muito robusta, mas com incidência de vazamento do retentor do eixo da cremalheira. A troca do retentor exige desmontagem do braço pitman. Verificar desgaste da própria cremalheira — em casos avançados, o desgaste é irreversível. Fluido recomendado: ATF Dexron II/Dexron III. A bomba de direção também costuma apresentar vazamento pelo selo traseiro.",
-    precoEstimadoPeca: 680.00
+    "id": "-novo-uno---vivace----4",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Novo Uno / Vivace / Fiorino",
+    "anos": "2010–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Jtekt (Koyo)",
+    "codigos": [
+      "16900566S",
+      "A0039376S"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4"
+    ],
+    "aplicacoes": [
+      "Novo Uno",
+      "Grand Siena",
+      "Fiorino",
+      "Novo Palio"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Jtekt (Koyo) para Novo Uno / Vivace / Fiorino. Período: 2010–2020. Motorizações: 1.0 / 1.4.",
+    "precoEstimadoPeca": 500.0
   },
   {
-    id: "gm-corsa-celta-dhb-94",
-    marcaVeiculo: "Chevrolet",
-    modeloVeiculo: "Corsa / Celta / Classic / Prisma",
-    anos: "1994-2016",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-53000", "93374629", "26042352", "DHB53000"],
-    motorizacoes: ["1.0", "1.4", "1.6", "1.8"],
-    aplicacoes: ["Corsa 1994-2002", "Corsa Sedan 1995-2002", "Corsa Wagon 1997-2002", "Corsa Pick-up 1995-2003", "Celta 2000-2016", "Classic 2002-2016", "Prisma 2006-2012"],
-    sintomasComuns: ["Vazamento de óleo pela cremalheira", "Folga no volante", "Ruído tipo estalo ao virar", "Direção pesada em marcha lenta"],
-    observacoes: "Caixa DHB com alta incidência de vazamento do retentor da cremalheira em modelos acima de 120 mil km. O retentor é pequeno e fica exposto a detritos da rodovia. A troca de retentor exige ferramenta específica para não danificar o alojamento. O selim de ajuste da cremalheira pode emperrar com o tempo — usar WD-40 antes de tentar ajustar. Fluido recomendado: ATF Dexron III. Modelos 1.8 compartilham a mesma caixa, mas com haste do pitman mais longa.",
-    precoEstimadoPeca: 650.00
+    "id": "-punto-5",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Punto",
+    "anos": "2008–2017",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "BA8028",
+      "BA8005",
+      "BA8007"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Punto",
+      "Linea"
+    ],
+    "sintomasComuns": [
+      "Ruído",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Punto. Período: 2008–2017. Motorizações: 1.4 / 1.6 / 1.8.",
+    "precoEstimadoPeca": 800.0
   },
   {
-    id: "ford-ka-fiesta-visteon-02",
-    marcaVeiculo: "Ford",
-    modeloVeiculo: "Ka / Fiesta",
-    anos: "2002-2014",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "Visteon",
-    codigos: ["VIST-12000", "2S65-3200-AD", "2S653200AD", "VIST-12001"],
-    motorizacoes: ["1.0 Zetec Rocam", "1.6 Zetec Rocam"],
-    aplicacoes: ["Ford Ka 2002-2014", "Ford Fiesta 2002-2014", "Ford Fiesta Sedan 2005-2014"],
-    sintomasComuns: ["Vazamento no retentor do pinhão", "Folga na articulação do braço pitman", "Direção dura ao esterçar", "Ruído tipo chiado ao esterçar"],
-    observacoes: "Caixa Visteon com sistema de pinhão e cremalheira sem braço pitman intermediário. O retentor do pinhão fica exposto e é ponto crítico de vazamento. A cremalheira tem pré-carga fixa — não há ajuste externo. Na desmontagem, atenção ao suporte da caixa: os buchas de borracha degradam com calor. Usar fluido específico Ford ou ATF Dexron III. O retentor original é NBR reforçado — genéricos de baixa qualidade vazam em poucos meses. Verificar também estado do cilindro de alta pressão.",
-    precoEstimadoPeca: 780.00
+    "id": "-idea-6",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Idea",
+    "anos": "2006–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900162S"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Idea",
+      "Palio",
+      "Siena",
+      "Strada"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Idea. Período: 2006–2016. Motorizações: 1.4 / 1.8.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "renault-sandero-logan-trw-07",
-    marcaVeiculo: "Renault",
-    modeloVeiculo: "Sandero / Logan / Duster",
-    anos: "2007-2022",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-RN-01", "49001.1867R", "490011867R", "TRW1867R"],
-    motorizacoes: ["1.0 16V", "1.6 8V", "1.6 16V", "2.0 16V"],
-    aplicacoes: ["Sandero 2007-2022", "Logan 2007-2022", "Duster 2011-2022", "Sandero Stepway 2008-2022"],
-    sintomasComuns: ["Vazamento do retentor da cremalheira", "Direção pesada", "Folga no volante", "Ruído ao passar em lombadas"],
-    observacoes: "Caixa TRW com boa durabilidade geral. O retentor da cremalheira é o ponto mais fraco — recomenda-se troca preventiva a cada 100 mil km. O ajuste do selim é feito por parafuso de topo — usar torque de 4,0 kgf.m. A bomba de direção também deve ser verificada, pois em modelos 1.0 a bomba trabalha em regime mais forçado. Fluido recomendado: fluido sintético de direção hidráulica ou ATF Dexron III. A haste do terminal de direção pode apresentar folga em veículos de uso rural.",
-    precoEstimadoPeca: 890.00
+    "id": "-doblo-7",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Doblo",
+    "anos": "2002–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB / TRW",
+    "codigos": [
+      "BA8140",
+      "BA8320",
+      "BA8447"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Doblo",
+      "Adventure"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica DHB / TRW para Doblo. Período: 2002–2019. Motorizações: 1.4 / 1.6 / 1.8.",
+    "precoEstimadoPeca": 700.0
   },
   {
-    id: "toyota-corolla-zf-02",
-    marcaVeiculo: "Toyota",
-    modeloVeiculo: "Corolla / Fielder",
-    anos: "2002-2014",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "ZF",
-    codigos: ["ZF-44200", "44200-12750", "4420012750", "ZF-TOY-01"],
-    motorizacoes: ["1.8 16V", "1.6 16V", "2.0 16V"],
-    aplicacoes: ["Corolla 2002-2008", "Corolla 2009-2014", "Fielder 2004-2008", "Corolla XEi/SE-G 2002-2014"],
-    sintomasComuns: ["Vazamento de óleo pela cremalheira", "Direção dura com motor frio", "Folga no volante", "Ruído de engrenagem ao esterçar"],
-    observacoes: "Caixa ZF de excelente durabilidade, mas com retentor da cremalheira como ponto vulnerável após 150 mil km. Usar fluido Toyota ATF WS ou equivalente — nunca usar Dexron comum, pois pode danificar os selos. O ajuste do selim é feito por contraporca — prender com torque de 3,8 kgf.m. A cremalheira tem revestimento especial de baixo atrito. Em modelos 2009+, o retentor foi redesenhado com duplo lábio. Sempre verificar alinhamento das rodas após reparo — desalinhamento acelera desgaste.",
-    precoEstimadoPeca: 1200.00
+    "id": "-strada-8",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Strada",
+    "anos": "1999–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX33844",
+      "16900162S"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Palio",
+      "Siena",
+      "Strada",
+      "Weekend"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Strada. Período: 1999–2020. Motorizações: 1.4 / 1.6 / 1.8.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "honda-civic-trw-01",
-    marcaVeiculo: "Honda",
-    modeloVeiculo: "Civic / Fit",
-    anos: "2001-2016",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-HND-01", "53601-S5A-A51", "53601S5AA51", "TRW53601"],
-    motorizacoes: ["1.7 16V", "1.8 16V", "2.0 16V"],
-    aplicacoes: ["Civic 2001-2006 (7ª geração)", "Civic 2007-2011 (8ª geração)", "Civic 2012-2016 (9ª geração)", "Fit 2004-2008 (1.5)"],
-    sintomasComuns: ["Vazamento retentor pinhão", "Direção pesada em baixa rotação", "Folga no volante", "Ruído de batida no eixo dianteiro"],
-    observacoes: "Caixa TRW com múltiplas revisões ao longo das gerações. O retentor do pinhão é mais comum de vazar que o da cremalheira. A bucha do suporte da caixa pode degradar em regiões litorâneas (maresia). Usar fluido Honda PSF ou ATF Dexron III. Ajuste do selim: 3,5 kgf.m. No Civic 2012+, a caixa tem sensor de torque integrado — cuidado ao desconectar o chicote. A pré-carga de fábrica é ajustada por calços — não alterar sem necessidade.",
-    precoEstimadoPeca: 1100.00
+    "id": "-toro-9",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Toro",
+    "anos": "2016–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [
+      "JRM635",
+      "53485992",
+      "51967456",
+      "7117136020"
+    ],
+    "motorizacoes": [
+      "1.8",
+      "2.0",
+      "2.4"
+    ],
+    "aplicacoes": [
+      "Toro",
+      "Jeep Compass",
+      "Renegade"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para Toro. Período: 2016–2024. Motorizações: 1.8 / 2.0 / 2.4.",
+    "precoEstimadoPeca": 1800.0
   },
   {
-    id: "peugeot-206-207-trw-98",
-    marcaVeiculo: "Peugeot",
-    modeloVeiculo: "206 / 207 / Hoggar",
-    anos: "1998-2016",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-PSA-01", "4000.EL", "4000.EL2", "4000.VV", "TRW4000"],
-    motorizacoes: ["1.0 16V", "1.4 8V", "1.4 16V", "1.6 16V", "1.6 Flex"],
-    aplicacoes: ["206 1998-2010", "207 2008-2016", "Hoggar 2010-2014", "207 SW 2009-2013", "207 Passion 2008-2016"],
-    sintomasComuns: ["Vazamento retentor cremalheira", "Direção dura intermitente", "Folga excessiva", "Ruído ao virar volante totalmente"],
-    observacoes: "Caixa TRW compartilhada com linha Citroën C3. O retentor da cremalheira é pequeno e tende a vazar com frequência. A haste do braço pitman é curta — folga aqui afeta o alinhamento diretamente. O suporte da caixa usa 3 parafusos com buchas de nylon — verificar integridade. Fluido recomendado: fluido Total ou ATF Dexron III. O selim de ajuste fica na parte inferior — acesso por baixo do veículo. A pré-carga de fábrica pode ser perdida após desmontagem — usar gabarito para reposicionar.",
-    precoEstimadoPeca: 750.00
+    "id": "-argo---cronos-10",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Argo / Cronos",
+    "anos": "2017–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [
+      "JRM660",
+      "7097301",
+      "52178425",
+      "52221798"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.3",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Argo",
+      "Cronos",
+      "Mobi",
+      "Uno Way"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para Argo / Cronos. Período: 2017–2024. Motorizações: 1.0 / 1.3 / 1.8.",
+    "precoEstimadoPeca": 1900.0
   },
   {
-    id: "chevrolet-onix-jtekt-17",
-    marcaVeiculo: "Chevrolet",
-    modeloVeiculo: "Onix / Prisma / Onix Plus",
-    anos: "2017-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "Jtekt",
-    codigos: ["JTEKT-EPS-01", "26216658", "42538366", "JTEKT-GM-01"],
-    motorizacoes: ["1.0", "1.4", "1.0 Turbo", "1.2"],
-    aplicacoes: ["Onix 2017-2019", "Prisma 2017-2019", "Onix Plus 2020-2024", "Onix 2020-2024"],
-    sintomasComuns: ["Direção pesada do nada", "Luz EPS acesa no painel", "Direção travando em um lado", "Ruído elétrico no motor da coluna"],
-    observacoes: "Direção elétrica assistida (EPS) com motor na coluna de direção. NÃO aplicar fluido. Diagnóstico exclusivo por scanner — verificar códigos U0131, U0415. O torque sensor é sensível a impactos — desalinhamento de roda pode danificar. A coluna é soldada — não desmontável para reparo convencional. Em caso de falha, geralmente é substituição completa. Verificar chicote e conector do motor — oxidação em regiões litorâneas. A central de direção é acoplada à coluna — em alguns modelos precisa de codificação após troca. A luz EPS acesa pode ser apenas recalibragem de torque zero.",
-    precoEstimadoPeca: 2800.00
+    "id": "-mobi-11",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Mobi",
+    "anos": "2016–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [
+      "52022908",
+      "JRM660"
+    ],
+    "motorizacoes": [
+      "1.0"
+    ],
+    "aplicacoes": [
+      "Mobi",
+      "Argo",
+      "Cronos"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para Mobi. Período: 2016–2024. Motorizações: 1.0.",
+    "precoEstimadoPeca": 1800.0
   },
   {
-    id: "vw-polo-virtus-zf-18",
-    marcaVeiculo: "Volkswagen",
-    modeloVeiculo: "Polo / Virtus / Nivus",
-    anos: "2018-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "ZF",
-    codigos: ["ZF-EPS-01", "2G1.423.051", "2G1423051", "ZF-VW-01"],
-    motorizacoes: ["1.0 TSI", "1.6 MSI", "1.4 TSI"],
-    aplicacoes: ["Polo 2018-2024", "Virtus 2018-2024", "Nivus 2020-2024", "T-Cross 2019-2024"],
-    sintomasComuns: ["Luz de direção amarela no painel", "Direção pesada em baixa velocidade", "Direção solta demais em alta", "Mensagem 'Erro de direção' no MID"],
-    observacoes: "Sistema EPS ZF com assistência variável por velocidade. Motor de assistência acoplado à coluna. Não há caixa hidráulica — reparo é eletrônico/mecânico. Falhas comuns: perda de calibração do torque sensor, defeito no motor de assistência, ou falha na central. Requer scanner VW VCDS ou ODIS para diagnóstico. A calibração de torque zero deve ser feita com roda reta e veículo parado. A substituição da coluna completa é o reparo mais comum em oficinas. Verificar atualizações de software da central — recall VW 2022 envolveu EPS.",
-    precoEstimadoPeca: 3200.00
+    "id": "-toro--mec-nica-p--ep-12",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Toro (mecânica p/ EPS)",
+    "anos": "2016–2022",
+    "tipoCaixa": "mecanica",
+    "fabricanteCaixa": "Jtekt / TRW",
+    "codigos": [
+      "7117136010",
+      "52060738"
+    ],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Toro",
+      "Compass",
+      "Renegade"
+    ],
+    "sintomasComuns": [],
+    "observacoes": "Caixa mecanica Jtekt / TRW para Toro (mecânica p/ EPS). Período: 2016–2022. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 1300.0
   },
   {
-    id: "toyota-corolla-jtekt-15",
-    marcaVeiculo: "Toyota",
-    modeloVeiculo: "Corolla / Yaris / Etios",
-    anos: "2015-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "Jtekt",
-    codigos: ["JTEKT-EPS-02", "45510-02450", "4551002450", "JTEKT-TOY-01"],
-    motorizacoes: ["1.8 16V", "2.0 16V", "1.5 16V"],
-    aplicacoes: ["Corolla 2015-2024", "Yaris 2018-2024", "Etios 2016-2021", "Corolla Cross 2021-2024"],
-    sintomasComuns: ["Luz EPS piscando", "Direção pesada intermitente", "Ruído de motor ao esterçar", "Recalibragem necessária após alinhamento"],
-    observacoes: "EPS Jtekt com motor acoplado ao pinhão da cremalheira (direção de pinhão elétrica). Não confundir com EPS de coluna. O motor fica sobre a caixa de direção propriamente dita. A posição de torque zero deve ser recalibrada após qualquer serviço de suspensão. Usar scanner Toyota Techstream para diagnóstico. Códigos comuns: C1511, C1512, C1528. O motor de assistência pode apresentar ruído de engrenagem — troca de coluna completa recomendada. Verificar chicote de alimentação — fusível de 60A no compartimento do motor. A calibração de torque leva cerca de 30 segundos com scanner.",
-    precoEstimadoPeca: 3500.00
+    "id": "-gol-g1---g2---g3---g-13",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Gol G1 / G2 / G3 / G4",
+    "anos": "1983–2014",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900255S",
+      "5U1422055A"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6",
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Gol",
+      "Voyage G1",
+      "Parati",
+      "Saveiro",
+      "Santana",
+      "Quantum"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Gol G1 / G2 / G3 / G4. Período: 1983–2014. Motorizações: 1.0 / 1.6 / 1.8 / 2.0.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "fiat-uno-mille-dhb-90",
-    marcaVeiculo: "Fiat",
-    modeloVeiculo: "Uno / Premio / Elba",
-    anos: "1990-2013",
-    tipoCaixa: "mecanica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-UNO-01", "5179.0001", "51790001", "DHB-ME-01"],
-    motorizacoes: ["1.0", "1.3", "1.5", "1.6"],
-    aplicacoes: ["Uno 1990-2013", "Premio 1990-1994", "Elba 1990-1996", "Fiorino 1990-2013"],
-    sintomasComuns: ["Direção muito pesada", "Folga excessiva no volante", "Batida ao passar em buraco", "Desgaste da cremalheira visível"],
-    observacoes: "Caixa mecânica sem assistência hidráulica. Comum em Uno e Fiorino até 2013. O desgaste da cremalheira e do pinhão é o problema mais comum — não há como ajustar folga. A bucha do suporte da caixa também pode criar folga. Como não há fluido, o desgaste é puramente mecânico. Verificar terminal de direção e pivôs — muitas vezes a folga aparente é da suspensão, não da caixa. A cremalheira pode ser substituída individualmente em alguns modelos. Lubrificar as buchas do suporte com graxa de alta aderência. O volante pesado pode ser causado por desalinhamento ou pneus de perfil baixo.",
-    precoEstimadoPeca: 380.00
+    "id": "-gol-g5---g6-14",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Gol G5 / G6",
+    "anos": "2008–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Yokomitsu",
+    "codigos": [
+      "16900255S",
+      "5U1422055D/G/J/K/L",
+      "6415ST",
+      "6416"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6 (EA-111",
+      "EA-211)"
+    ],
+    "aplicacoes": [
+      "Gol",
+      "Voyage",
+      "Saveiro",
+      "Fox",
+      "Spacefox",
+      "Crossfox"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Yokomitsu para Gol G5 / G6. Período: 2008–2020. Motorizações: 1.0 / 1.6 (EA-111 / EA-211).",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "fiat-toro-trw-16",
-    marcaVeiculo: "Fiat",
-    modeloVeiculo: "Toro / Jeep Compass",
-    anos: "2016-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-EPS-02", "5208.8758", "52088758", "TRW-FIAT-01"],
-    motorizacoes: ["1.8 Flex", "2.0 Diesel", "2.0 Turbo", "1.3 Turbo"],
-    aplicacoes: ["Toro 2016-2024", "Jeep Compass 2017-2024", "Jeep Renegade 2015-2024", "Fiat Toro Ultra 2020-2024"],
-    sintomasComuns: ["Luz EPS acesa", "Direção pesada ao estacionar", "Direção solta em estrada", "Mensagem de erro no painel"],
-    observacoes: "Direção elétrica assistida com motor na coluna, usada em muitos modelos da plataforma FCA (FCA Small Wide). Diagnóstico por scanner. Códigos U0121, U0131, U0415 comuns. A calibração de centro exige roda alinhada e veículo parado. O torque sensor é integrado ao rolamento da coluna — sensível a pancadas. Substituir a coluna completa é o reparo padrão. Verificar fusível de 50A no compartimento do motor. Em modelos 4x4, a central EPS se comunica com o módulo de tração — não desconectar bateria sem precaução. A recalibragem após troca de pneus de medida diferente é obrigatória.",
-    precoEstimadoPeca: 4200.00
+    "id": "-voyage-g5---g6-15",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Voyage G5 / G6",
+    "anos": "2008–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900255S",
+      "5U1422055A"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Gol",
+      "Voyage",
+      "Saveiro",
+      "Fox"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Voyage G5 / G6. Período: 2008–2020. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "hyundai-hb20-jtekt-12",
-    marcaVeiculo: "Hyundai",
-    modeloVeiculo: "HB20 / HB20S / Creta",
-    anos: "2012-2024",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "Jtekt",
-    codigos: ["JTEKT-HYD-01", "56500-1S000", "565001S000", "JTEKT-HY-01"],
-    motorizacoes: ["1.0", "1.6", "1.6 Flex", "2.0"],
-    aplicacoes: ["HB20 2012-2019", "HB20S 2013-2019", "Creta 2016-2019", "HB20 2020-2024 (geração anterior na suspensão)"],
-    sintomasComuns: ["Vazamento retentor pinhão", "Direção pesada com ar-condicionado ligado", "Ruído ao virar totalmente", "Folga no volante"],
-    observacoes: "Caixa hidráulica Jtekt com boa durabilidade geral. O retentor do pinhão é o ponto mais comum de vazamento — recomenda-se usar retentor original. A bomba de direção é acionada por correia — verificar tensão. O fluido deve ser trocado a cada 60 mil km. Fluido recomendado: fluido PSF ou ATF Dexron III. O selim de ajuste da cremalheira usa parafuso de topo com torque de 4,0 kgf.m. A bucha do braço pitman pode apresentar folga em uso urbano intenso. Verificar vazamento pela base da caixa — pode ser apenas bucha do suporte.",
-    precoEstimadoPeca: 980.00
+    "id": "-fox---spacefox---cro-16",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Fox / Spacefox / Crossfox",
+    "anos": "2003–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900255S",
+      "5U1422055A"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Fox",
+      "Spacefox",
+      "Crossfox",
+      "Polo",
+      "Gol G5",
+      "Voyage",
+      "Saveiro"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "ruído",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Fox / Spacefox / Crossfox. Período: 2003–2019. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "nissan-march-versa-koyo-11",
-    marcaVeiculo: "Nissan",
-    modeloVeiculo: "March / Versa / Sentra",
-    anos: "2011-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "Koyo",
-    codigos: ["KOYO-EPS-01", "48001-1HS2A", "480011HS2A", "KOYO-NIS-01"],
-    motorizacoes: ["1.0", "1.6", "2.0", "1.8"],
-    aplicacoes: ["March 2011-2022", "Versa 2011-2024", "Sentra 2014-2024", "Kicks 2016-2024"],
-    sintomasComuns: ["Luz EPS acesa", "Direção pesada do nada", "Direção muito solta em alta", "Erro de comunicação EPS"],
-    observacoes: "EPS Koyo com motor acoplado à coluna. Sistema sensível a calibração de torque zero — deve ser refeita após qualquer serviço de suspensão. Diagnóstico por scanner genérico ou Consult III. Códigos: C1130, U1000, U1010. O motor de assistência pode apresentar falha intermitente — às vezes funciona ao reiniciar o veículo. Verificar chicote do motor — conector fica próximo ao pé do motorista. A substituição da coluna completa é o reparo mais comum. A calibração de torque zero leva cerca de 1 minuto. Em caso de pane completa, a direção fica puramente mecânica — pesada, mas dirigível.",
-    precoEstimadoPeca: 2600.00
+    "id": "-polo--gera--es-at--2-17",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Polo (gerações até 2017)",
+    "anos": "2003–2017",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Koyo (Jtekt)",
+    "codigos": [
+      "16900255S",
+      "CX450255"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Polo",
+      "Fox",
+      "Gol G5",
+      "Voyage"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Koyo (Jtekt) para Polo (gerações até 2017). Período: 2003–2017. Motorizações: 1.0 / 1.6 / 2.0.",
+    "precoEstimadoPeca": 700.0
   },
   {
-    id: "ford-ranger-dhb-12",
-    marcaVeiculo: "Ford",
-    modeloVeiculo: "Ranger / Troller",
-    anos: "2012-2024",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-TRK-01", "AB39-3200-AC", "AB393200AC", "DHB-FORD-01"],
-    motorizacoes: ["2.2 Diesel", "3.2 Diesel", "2.5 Flex", "2.0 Diesel"],
-    aplicacoes: ["Ranger 2012-2024", "Troller T4 2015-2021", "Raptor 2023-2024"],
-    sintomasComuns: ["Vazamento retentor cremalheira", "Direção pesada em terreno off-road", "Folga no braço pitman", "Ruído ao passar em lombadas"],
-    observacoes: "Caixa DHB reforçada para uso pesado e off-road. O retentor da cremalheira é grande e suporta mais torque, mas vazamento é comum em uso rural. A bucha do braço pitman é reforçada — verificar em uso severo. Fluido recomendado: ATF Dexron III ou fluido específico Ford. O selim de ajuste fica na parte superior da caixa — acesso pelo compartimento do motor. A pré-carga de fábrica é alta para suportar carga off-road. Verificar vazamento também pelas mangueiras de alta pressão — conexões com anel de vedação. A bomba de direção em motores diesel é maior e mais resistente.",
-    precoEstimadoPeca: 1500.00
+    "id": "-polo--novo----virtus-18",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Polo (novo) / Virtus / T-Cross / Nivus",
+    "anos": "2018–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "JRM669"
+    ],
+    "motorizacoes": [
+      "1.0 TSI",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Polo",
+      "Virtus",
+      "T-Cross",
+      "Nivus"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento",
+      "folga"
+    ],
+    "observacoes": "Caixa eletrica TRW para Polo (novo) / Virtus / T-Cross / Nivus. Período: 2018–2024. Motorizações: 1.0 TSI / 1.6.",
+    "precoEstimadoPeca": 2000.0
   },
   {
-    id: "citroen-c3-trw-02",
-    marcaVeiculo: "Citroën",
-    modeloVeiculo: "C3 / C4 / Aircross",
-    anos: "2002-2024",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-PSA-02", "4000.WV", "4000.WW", "4000.XN", "TRW-CIT-01"],
-    motorizacoes: ["1.4", "1.5", "1.6", "1.6 Turbo", "2.0"],
-    aplicacoes: ["C3 2002-2012", "C3 2012-2024", "C4 2004-2014", "C4 Lounge 2013-2024", "Aircross 2010-2024"],
-    sintomasComuns: ["Vazamento retentor cremalheira", "Direção dura ao fazer curva", "Folga no volante", "Ruído tipo rangido"],
-    observacoes: "Caixa TRW compartilhada com Peugeot 206/207/208. O retentor da cremalheira é pequeno e comum de vazar. A bucha do braço pitman usa nylon — verificar desgaste. O suporte da caixa tem 3 pontos de fixação com buchas de borracha. Fluido recomendado: fluido Total ou ATF Dexron III. Ajuste do selim: 3,5 kgf.m. O sensor de pressão em alguns modelos C4 pode indicar falso defeito se o fluido estiver baixo. Em modelos com direção assistida eletro-hidráulica (C4 Lounge 2013+), a bomba é acionada por motor elétrico — não confundir com EPS pura.",
-    precoEstimadoPeca: 820.00
+    "id": "-jetta-2-0-19",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Jetta 2.0",
+    "anos": "2011–2015",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900255S (variante)"
+    ],
+    "motorizacoes": [
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Jetta 2.0"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Jetta 2.0. Período: 2011–2015. Motorizações: 2.0.",
+    "precoEstimadoPeca": 900.0
   },
   {
-    id: "gm-agile-montana-dhb-09",
-    marcaVeiculo: "Chevrolet",
-    modeloVeiculo: "Agile / Montana",
-    anos: "2009-2016",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "DHB",
-    codigos: ["DHB-GM-02", "94702268", "26089053", "DHB52055"],
-    motorizacoes: ["1.4", "1.8"],
-    aplicacoes: ["Agile 2009-2016", "Montana 2011-2019", "Agile Effect 2011-2016"],
-    sintomasComuns: ["Vazamento retentor pinhão", "Direção pesada com carga", "Folga no volante", "Ruído metálico ao virar"],
-    observacoes: "Caixa DHB com boa durabilidade em uso urbano. O retentor do pinhão é o ponto mais fraco. A bucha do braço pitman é de borracha — substituir em caso de folga. O selim de ajuste é acessível pela parte inferior. Fluido recomendado: ATF Dexron III. A bomba de direção é a mesma da linha Corsa — compatibilidade de peças. Verificar mangueiras de alta pressão — conexões com rosca fina. A caixa é menor que a do Corsa — não trocar entre modelos. Em Montana com carga, a direção pode ficar mais pesada — normal se o fluido estiver em dia.",
-    precoEstimadoPeca: 790.00
+    "id": "-golf--gera--es-anter-20",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Golf (gerações anteriores)",
+    "anos": "1994–2013",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "ZF / TRW",
+    "codigos": [
+      "1K1423051",
+      "1K1423055"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Golf",
+      "A3",
+      "Bora",
+      "Jetta"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica ZF / TRW para Golf (gerações anteriores). Período: 1994–2013. Motorizações: 1.6 / 1.8 / 2.0.",
+    "precoEstimadoPeca": 800.0
   },
   {
-    id: "honda-city-fit-trw-09",
-    marcaVeiculo: "Honda",
-    modeloVeiculo: "City / Fit / HR-V",
-    anos: "2009-2024",
-    tipoCaixa: "eletrica",
-    fabricanteCaixa: "TRW",
-    codigos: ["TRW-EPS-HND", "53601-TG5-A51", "53601TG5A51", "TRW-HND-02"],
-    motorizacoes: ["1.5 16V", "1.5 Flex", "1.8 16V"],
-    aplicacoes: ["City 2009-2024", "Fit 2009-2024", "HR-V 2015-2024", "WR-V 2017-2024"],
-    sintomasComuns: ["Luz EPS acesa", "Direção pesada ao estacionar", "Ruído de motor ao esterçar", "Direção solta em reta"],
-    observacoes: "EPS TRW com motor acoplado à coluna. Sistema usado em toda linha Honda compacta. Diagnóstico por scanner HDS. Códigos: DTC 61 (torque sensor), DTC 62 (motor). A calibração de torque zero é obrigatória após troca de coluna ou alinhamento. O sensor de torque é integrado — não reparável separadamente. A substituição completa da coluna é o reparo padrão. Verificar atualização de software da central — Honda lançou TSBs relacionados a EPS em 2019 e 2021. Em caso de pane, a direção permanece mecânica, mas muito pesada. A luz EPS acesa pode ser apenas falha de comunicação — verificar chicote.",
-    precoEstimadoPeca: 2400.00
+    "id": "-saveiro-g5---g6---g7-21",
+    "marcaVeiculo": "",
+    "modeloVeiculo": "Saveiro G5 / G6 / G7",
+    "anos": "2008–2024",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "16900255S"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Saveiro",
+      "Gol",
+      "Voyage",
+      "Fox"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Saveiro G5 / G6 / G7. Período: 2008–2024. Motorizações: 1.6 / 1.8.",
+    "precoEstimadoPeca": 600.0
   },
   {
-    id: "vw-jetta-golf-zf-05",
-    marcaVeiculo: "Volkswagen",
-    modeloVeiculo: "Jetta / Golf / Passat",
-    anos: "2005-2014",
-    tipoCaixa: "hidraulica",
-    fabricanteCaixa: "ZF",
-    codigos: ["ZF-VW-02", "1K1.423.051", "1K1423051", "ZF-44250"],
-    motorizacoes: ["1.6", "2.0", "2.0 TSI", "1.4 TSI"],
-    aplicacoes: ["Jetta 2005-2014", "Golf 2005-2014", "Passat 2006-2014", "Bora 2005-2011"],
-    sintomasComuns: ["Vazamento retentor cremalheira", "Direção pesada com motor frio", "Ruído de engrenagem ao esterçar", "Folga no volante"],
-    observacoes: "Caixa ZF de alta durabilidade usada em linha VW premium. O retentor da cremalheira é o único ponto fraco comum. A pré-carga de fábrica é ajustada por calços — não perder na desmontagem. Fluido recomendado: VW G 004 000 ou fluido sintético de direção. O selim de ajuste usa contraporca — torque de 3,8 kgf.m. A bucha do braço pitman é de poliuretano — mais durável, mas pode endurecer com calor. Verificar mangueiras de alta pressão — são de aço e podem oxidar em regiões litorâneas. A caixa do Golf é fisicamente igual à do Jetta — apenas fixação do suporte pode variar.",
-    precoEstimadoPeca: 1350.00
+    "id": "chevrolet-corsa--1--gera--o--22",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Corsa (1ª geração)",
+    "anos": "1994–2003",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB (Saginaw)",
+    "codigos": [
+      "153504513",
+      "22026",
+      "22114",
+      "NCDH30003",
+      "JRP1382"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Corsa Hatch",
+      "Sedan",
+      "Wagon",
+      "Pickup"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica DHB (Saginaw) para Corsa (1ª geração). Período: 1994–2003. Motorizações: 1.0 / 1.4 / 1.6.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-corsa-classic-23",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Corsa Classic",
+    "anos": "2003–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026",
+      "22114"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Corsa Classic",
+      "Celta",
+      "Prisma",
+      "Tigra"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Corsa Classic. Período: 2003–2016. Motorizações: 1.0 / 1.4 / 1.6.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-celta-24",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Celta",
+    "anos": "2000–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026",
+      "22114"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4"
+    ],
+    "aplicacoes": [
+      "Celta",
+      "Corsa",
+      "Classic",
+      "Prisma",
+      "Tigra"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "ruído",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Celta. Período: 2000–2016. Motorizações: 1.0 / 1.4.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-prisma--1--gera--o--25",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Prisma (1ª geração)",
+    "anos": "2006–2012",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4"
+    ],
+    "aplicacoes": [
+      "Prisma",
+      "Celta",
+      "Corsa",
+      "Classic"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Prisma (1ª geração). Período: 2006–2012. Motorizações: 1.0 / 1.4.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-prisma--novo----onix-26",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Prisma (novo) / Onix (1ª geração)",
+    "anos": "2013–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB / TRW",
+    "codigos": [
+      "93389866",
+      "93344883",
+      "93384074"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4"
+    ],
+    "aplicacoes": [
+      "Onix",
+      "Prisma",
+      "Spin",
+      "Sonic"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica DHB / TRW para Prisma (novo) / Onix (1ª geração). Período: 2013–2019. Motorizações: 1.0 / 1.4.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "chevrolet-agile-27",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Agile",
+    "anos": "2009–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026",
+      "22114"
+    ],
+    "motorizacoes": [
+      "1.4"
+    ],
+    "aplicacoes": [
+      "Agile",
+      "Corsa",
+      "Celta",
+      "Montana (frente Agile)"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Agile. Período: 2009–2016. Motorizações: 1.4.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-montana--frente-agil-28",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Montana (frente Agile)",
+    "anos": "2011–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Montana",
+      "Agile",
+      "Corsa",
+      "Celta"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Montana (frente Agile). Período: 2011–2020. Motorizações: 1.4 / 1.8.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-tigra-29",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Tigra",
+    "anos": "1994–1999",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB",
+    "codigos": [
+      "153504513",
+      "22026"
+    ],
+    "motorizacoes": [
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Tigra",
+      "Corsa",
+      "Celta"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica DHB para Tigra. Período: 1994–1999. Motorizações: 1.6.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "chevrolet-onix--novo----onix-p-30",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Onix (novo) / Onix Plus",
+    "anos": "2020–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.0",
+      "1.2"
+    ],
+    "aplicacoes": [
+      "Onix",
+      "Onix Plus",
+      "Tracker"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para Onix (novo) / Onix Plus. Período: 2020–2024. Motorizações: 1.0 / 1.2.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "chevrolet-cruze-31",
+    "marcaVeiculo": "Chevrolet",
+    "modeloVeiculo": "Cruze",
+    "anos": "2011–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "ZF / TRW",
+    "codigos": [
+      "13286687",
+      "34675"
+    ],
+    "motorizacoes": [
+      "1.8"
+    ],
+    "aplicacoes": [
+      "Cruze",
+      "Tracker"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica ZF / TRW para Cruze. Período: 2011–2016. Motorizações: 1.8.",
+    "precoEstimadoPeca": 1000.0
+  },
+  {
+    "id": "ford-ka--gera--o-zetec-ro-32",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Ka (geração Zetec Rocam)",
+    "anos": "1997–2013",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Ford Visteon",
+    "codigos": [
+      "JRP1427",
+      "16900485S",
+      "9S653200AB",
+      "26122",
+      "36204"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.3",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Ka",
+      "Fiesta",
+      "Courier"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Ford Visteon para Ka (geração Zetec Rocam). Período: 1997–2013. Motorizações: 1.0 / 1.3 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "ford-fiesta--gera--o-amaz-33",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Fiesta (geração Amazon)",
+    "anos": "1996–2014",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Ford Visteon",
+    "codigos": [
+      "JRP1427",
+      "16900485S",
+      "9S653200AB",
+      "26122"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Fiesta",
+      "Ka",
+      "Ecosport",
+      "Courier"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Ford Visteon para Fiesta (geração Amazon). Período: 1996–2014. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "ford-ecosport--gera--o-an-34",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Ecosport (geração antiga)",
+    "anos": "2003–2012",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / Ford Visteon",
+    "codigos": [
+      "JRP1427",
+      "16900485S",
+      "9S653200AB"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Ecosport",
+      "Fiesta",
+      "Ka"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / Ford Visteon para Ecosport (geração antiga). Período: 2003–2012. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "ford-focus-35",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Focus",
+    "anos": "2001–2013",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / ZF",
+    "codigos": [
+      "33401",
+      "33402",
+      "33409"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Focus",
+      "Mondeo"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / ZF para Focus. Período: 2001–2013. Motorizações: 1.6 / 1.8 / 2.0.",
+    "precoEstimadoPeca": 800.0
+  },
+  {
+    "id": "ford-ranger--2-5---3-0--36",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Ranger (2.5 / 3.0)",
+    "anos": "1998–2012",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "33405",
+      "33406"
+    ],
+    "motorizacoes": [
+      "2.5",
+      "3.0"
+    ],
+    "aplicacoes": [
+      "Ranger",
+      "Explorer"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Ranger (2.5 / 3.0). Período: 1998–2012. Motorizações: 2.5 / 3.0.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "ford-ka--novo----new-fies-37",
+    "marcaVeiculo": "Ford",
+    "modeloVeiculo": "Ka (novo) / New Fiesta",
+    "anos": "2015–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.0",
+      "1.5"
+    ],
+    "aplicacoes": [
+      "Ka",
+      "New Fiesta",
+      "Ecosport"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW para Ka (novo) / New Fiesta. Período: 2015–2024. Motorizações: 1.0 / 1.5.",
+    "precoEstimadoPeca": 1800.0
+  },
+  {
+    "id": "renault-clio-38",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Clio",
+    "anos": "1999–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "DHB / TRW",
+    "codigos": [
+      "680014-DH",
+      "680037-DH"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Clio",
+      "Symbol"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica DHB / TRW para Clio. Período: 1999–2016. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 600.0
+  },
+  {
+    "id": "renault-sandero---logan--1---39",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Sandero / Logan (1ª geração)",
+    "anos": "2007–2014",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "JRP1425",
+      "16900238S",
+      "FT3014",
+      "300014",
+      "7150616001"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Sandero",
+      "Logan",
+      "Stepway"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Sandero / Logan (1ª geração). Período: 2007–2014. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "renault-sandero---logan--2---40",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Sandero / Logan (2ª geração)",
+    "anos": "2014–2024",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [
+      "490014306R",
+      "29128",
+      "300017ST",
+      "6516ST",
+      "7150616010"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Sandero",
+      "Logan",
+      "Stepway"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica Jtekt (Koyo) para Sandero / Logan (2ª geração). Período: 2014–2024. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 800.0
+  },
+  {
+    "id": "renault-duster-41",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Duster",
+    "anos": "2011–2024",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "JRP1425",
+      "16900238S"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Duster",
+      "Oroch",
+      "Captur"
+    ],
+    "sintomasComuns": [
+      "Folga",
+      "vazamento"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Duster. Período: 2011–2024. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 800.0
+  },
+  {
+    "id": "renault-kwid-42",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Kwid",
+    "anos": "2017–2024",
+    "tipoCaixa": "mecanica",
+    "fabricanteCaixa": "—",
+    "codigos": [],
+    "motorizacoes": [
+      "1.0"
+    ],
+    "aplicacoes": [
+      "Kwid"
+    ],
+    "sintomasComuns": [],
+    "observacoes": "Caixa mecanica — para Kwid. Período: 2017–2024. Motorizações: 1.0.",
+    "precoEstimadoPeca": 850.0
+  },
+  {
+    "id": "renault-fluence-43",
+    "marcaVeiculo": "Renault",
+    "modeloVeiculo": "Fluence",
+    "anos": "2011–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [
+      "JRP1425"
+    ],
+    "motorizacoes": [
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Fluence",
+      "Mégane"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Fluence. Período: 2011–2019. Motorizações: 2.0.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "toyota-corolla--gera--o-ant-44",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Corolla (geração anterior)",
+    "anos": "2003–2008",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [
+      "4551002220",
+      "17052"
+    ],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Corolla",
+      "Fielder"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica Jtekt (Koyo) para Corolla (geração anterior). Período: 2003–2008. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 1200.0
+  },
+  {
+    "id": "toyota-corolla--e140-e150--45",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Corolla (E140/E150)",
+    "anos": "2009–2014",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo) / TRW",
+    "codigos": [
+      "4551002670",
+      "17052",
+      "7785000052",
+      "JRM620",
+      "NCDE70101"
+    ],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Corolla 2009–2014"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento",
+      "folga"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) / TRW para Corolla (E140/E150). Período: 2009–2014. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 1400.0
+  },
+  {
+    "id": "toyota-corolla--novo--46",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Corolla (novo)",
+    "anos": "2015–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [
+      "455100D360",
+      "17059",
+      "7785000053",
+      "7785000054"
+    ],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Corolla",
+      "Corolla Cross"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) para Corolla (novo). Período: 2015–2024. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "toyota-etios-47",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Etios",
+    "anos": "2012–2021",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [
+      "NCD70103 (mecânica)",
+      "17059 (elétrica)"
+    ],
+    "motorizacoes": [
+      "1.3",
+      "1.5"
+    ],
+    "aplicacoes": [
+      "Etios",
+      "Etios Sedan"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) para Etios. Período: 2012–2021. Motorizações: 1.3 / 1.5.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "toyota-yaris-48",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Yaris",
+    "anos": "2018–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [],
+    "motorizacoes": [
+      "1.5"
+    ],
+    "aplicacoes": [
+      "Yaris",
+      "Yaris Sedan"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "folga"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) para Yaris. Período: 2018–2024. Motorizações: 1.5.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "toyota-hilux--pitbull---sw4-49",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Hilux (Pitbull / SW4)",
+    "anos": "2005–2015",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Koyo (Jtekt)",
+    "codigos": [
+      "442000K040",
+      "442000K170",
+      "442000K230",
+      "27001"
+    ],
+    "motorizacoes": [
+      "2.5",
+      "3.0"
+    ],
+    "aplicacoes": [
+      "Hilux",
+      "SW4"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica Koyo (Jtekt) para Hilux (Pitbull / SW4). Período: 2005–2015. Motorizações: 2.5 / 3.0.",
+    "precoEstimadoPeca": 1500.0
+  },
+  {
+    "id": "toyota-hilux--nova----sw4-50",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "Hilux (nova) / SW4",
+    "anos": "2016–2024",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Koyo (Jtekt)",
+    "codigos": [
+      "442000K040"
+    ],
+    "motorizacoes": [
+      "2.7",
+      "2.8"
+    ],
+    "aplicacoes": [
+      "Hilux",
+      "SW4"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica Koyo (Jtekt) para Hilux (nova) / SW4. Período: 2016–2024. Motorizações: 2.7 / 2.8.",
+    "precoEstimadoPeca": 1600.0
+  },
+  {
+    "id": "toyota-rav4-51",
+    "marcaVeiculo": "Toyota",
+    "modeloVeiculo": "RAV4",
+    "anos": "2006–2018",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [],
+    "motorizacoes": [
+      "2.0",
+      "2.5"
+    ],
+    "aplicacoes": [
+      "RAV4"
+    ],
+    "sintomasComuns": [
+      "Vazamento / Luz EPS"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) para RAV4. Período: 2006–2018. Motorizações: 2.0 / 2.5.",
+    "precoEstimadoPeca": 1200.0
+  },
+  {
+    "id": "honda-civic--gera--es-6-8--52",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "Civic (gerações 6–8)",
+    "anos": "1996–2006",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6",
+      "1.7"
+    ],
+    "aplicacoes": [
+      "Civic"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW para Civic (gerações 6–8). Período: 1996–2006. Motorizações: 1.6 / 1.7.",
+    "precoEstimadoPeca": 800.0
+  },
+  {
+    "id": "honda-new-civic--g8--53",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "New Civic (G8)",
+    "anos": "2007–2011",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "New Civic 2007–2011"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW para New Civic (G8). Período: 2007–2011. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "honda-civic--g9-g10--54",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "Civic (G9/G10)",
+    "anos": "2012–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt / TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.8",
+      "2.0",
+      "2.0 Turbo"
+    ],
+    "aplicacoes": [
+      "Civic",
+      "Civic Touring"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa eletrica Jtekt / TRW para Civic (G9/G10). Período: 2012–2024. Motorizações: 1.8 / 2.0 / 2.0 Turbo.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "honda-city-55",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "City",
+    "anos": "2009–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt / TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.5"
+    ],
+    "aplicacoes": [
+      "City",
+      "Fit"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Jtekt / TRW para City. Período: 2009–2024. Motorizações: 1.5.",
+    "precoEstimadoPeca": 1800.0
+  },
+  {
+    "id": "honda-fit-56",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "Fit",
+    "anos": "2004–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt / TRW",
+    "codigos": [],
+    "motorizacoes": [
+      "1.4",
+      "1.5"
+    ],
+    "aplicacoes": [
+      "Fit",
+      "City",
+      "WR-V"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento",
+      "ruído"
+    ],
+    "observacoes": "Caixa eletrica Jtekt / TRW para Fit. Período: 2004–2024. Motorizações: 1.4 / 1.5.",
+    "precoEstimadoPeca": 1800.0
+  },
+  {
+    "id": "honda-hr-v-57",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "HR-V",
+    "anos": "2015–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Jtekt (Koyo)",
+    "codigos": [],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "HR-V",
+      "City",
+      "Fit"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Jtekt (Koyo) para HR-V. Período: 2015–2024. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "honda-cr-v-58",
+    "marcaVeiculo": "Honda",
+    "modeloVeiculo": "CR-V",
+    "anos": "2008–2018",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "2.0",
+      "2.4"
+    ],
+    "aplicacoes": [
+      "CR-V"
+    ],
+    "sintomasComuns": [
+      "Vazamento / Luz EPS"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para CR-V. Período: 2008–2018. Motorizações: 2.0 / 2.4.",
+    "precoEstimadoPeca": 1200.0
+  },
+  {
+    "id": "hyundai-hb20---hb20s-59",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "HB20 / HB20S",
+    "anos": "2012–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Hyundai / Koyo (Jtekt)",
+    "codigos": [
+      "577001S000",
+      "50303MK",
+      "10100205"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "HB20",
+      "HB20S",
+      "HB20X"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica Hyundai / Koyo (Jtekt) para HB20 / HB20S. Período: 2012–2019. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 800.0
+  },
+  {
+    "id": "hyundai-hb20--nova-gera--o--60",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "HB20 (nova geração)",
+    "anos": "2020–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Hyundai / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.0",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "HB20",
+      "HB20S",
+      "Creta"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Hyundai / Jtekt para HB20 (nova geração). Período: 2020–2024. Motorizações: 1.0 / 1.6.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "hyundai-creta-61",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "Creta",
+    "anos": "2016–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Hyundai / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Creta",
+      "HB20"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Hyundai / Jtekt para Creta. Período: 2016–2024. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 2200.0
+  },
+  {
+    "id": "hyundai-tucson--gera--es-ant-62",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "Tucson (gerações anteriores)",
+    "anos": "2005–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Hyundai / ZF",
+    "codigos": [],
+    "motorizacoes": [
+      "2.0",
+      "2.7"
+    ],
+    "aplicacoes": [
+      "Tucson",
+      "Sportage",
+      "ix35"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica Hyundai / ZF para Tucson (gerações anteriores). Período: 2005–2016. Motorizações: 2.0 / 2.7.",
+    "precoEstimadoPeca": 1000.0
+  },
+  {
+    "id": "hyundai-tucson--nova--63",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "Tucson (nova)",
+    "anos": "2017–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "Hyundai / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6 Turbo",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Tucson",
+      "Creta"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica Hyundai / Jtekt para Tucson (nova). Período: 2017–2024. Motorizações: 1.6 Turbo / 2.0.",
+    "precoEstimadoPeca": 2500.0
+  },
+  {
+    "id": "hyundai-i30---elantra-64",
+    "marcaVeiculo": "Hyundai",
+    "modeloVeiculo": "i30 / Elantra",
+    "anos": "2009–2016",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "Hyundai / ZF",
+    "codigos": [],
+    "motorizacoes": [
+      "1.8",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "i30",
+      "Elantra",
+      "Cerato"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica Hyundai / ZF para i30 / Elantra. Período: 2009–2016. Motorizações: 1.8 / 2.0.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "peugeot-206-65",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "206",
+    "anos": "2001–2010",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112",
+      "INDISA"
+    ],
+    "motorizacoes": [
+      "1.0",
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "206",
+      "207",
+      "307",
+      "Hoggar",
+      "Partner"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para 206. Período: 2001–2010. Motorizações: 1.0 / 1.4 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-207-66",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "207",
+    "anos": "2008–2014",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "207",
+      "206",
+      "307",
+      "Hoggar"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para 207. Período: 2008–2014. Motorizações: 1.4 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-208-67",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "208",
+    "anos": "2013–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.2",
+      "1.5",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "208",
+      "2008",
+      "308"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para 208. Período: 2013–2024. Motorizações: 1.2 / 1.5 / 1.6.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "peugeot-307-68",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "307",
+    "anos": "2002–2012",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "307",
+      "206",
+      "207",
+      "Hoggar",
+      "C4"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para 307. Período: 2002–2012. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-hoggar-69",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Hoggar",
+    "anos": "2010–2014",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Hoggar",
+      "206",
+      "207",
+      "307"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Hoggar. Período: 2010–2014. Motorizações: 1.4 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-308---408-70",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "308 / 408",
+    "anos": "2012–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "308",
+      "408",
+      "3008"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para 308 / 408. Período: 2012–2024. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "peugeot-partner-71",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Partner",
+    "anos": "2003–2020",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Partner",
+      "Berlingo"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Partner. Período: 2003–2020. Motorizações: 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-2008---3008-72",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "2008 / 3008",
+    "anos": "2015–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "2008",
+      "3008",
+      "5008"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para 2008 / 3008. Período: 2015–2024. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 2200.0
+  },
+  {
+    "id": "peugeot-c3--1--gera--o--73",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "C3 (1ª geração)",
+    "anos": "2003–2012",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.4",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "C3",
+      "206",
+      "207",
+      "307",
+      "Hoggar"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para C3 (1ª geração). Período: 2003–2012. Motorizações: 1.4 / 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-c3--novo----c3-aircr-74",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "C3 (novo) / C3 Aircross",
+    "anos": "2013–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.2",
+      "1.5",
+      "1.6"
+    ],
+    "aplicacoes": [
+      "C3",
+      "C3 Aircross",
+      "208"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para C3 (novo) / C3 Aircross. Período: 2013–2024. Motorizações: 1.2 / 1.5 / 1.6.",
+    "precoEstimadoPeca": 2000.0
+  },
+  {
+    "id": "peugeot-c4---c4-lounge---c4--75",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "C4 / C4 Lounge / C4 Picasso",
+    "anos": "2004–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / DHB / ZF",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6",
+      "2.0",
+      "THP"
+    ],
+    "aplicacoes": [
+      "C4",
+      "C4 Lounge",
+      "307",
+      "308"
+    ],
+    "sintomasComuns": [
+      "Vazamento / Luz EPS"
+    ],
+    "observacoes": "Caixa eletrica TRW / DHB / ZF para C4 / C4 Lounge / C4 Picasso. Período: 2004–2024. Motorizações: 1.6 / 2.0 / THP.",
+    "precoEstimadoPeca": 900.0
+  },
+  {
+    "id": "peugeot-aircross-76",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Aircross",
+    "anos": "2011–2019",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Aircross",
+      "C3",
+      "206",
+      "207",
+      "307"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga",
+      "ruído"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Aircross. Período: 2011–2019. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-c4-cactus-77",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "C4 Cactus",
+    "anos": "2018–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6"
+    ],
+    "aplicacoes": [
+      "C4 Cactus",
+      "C3",
+      "208"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para C4 Cactus. Período: 2018–2024. Motorizações: 1.6.",
+    "precoEstimadoPeca": 2200.0
+  },
+  {
+    "id": "peugeot-xsara---picasso-78",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Xsara / Picasso",
+    "anos": "2001–2013",
+    "tipoCaixa": "hidraulica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.6",
+      "2.0"
+    ],
+    "aplicacoes": [
+      "Xsara",
+      "Picasso",
+      "206",
+      "307"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa hidraulica TRW / DHB para Xsara / Picasso. Período: 2001–2013. Motorizações: 1.6 / 2.0.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-berlingo-79",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Berlingo",
+    "anos": "2005–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / DHB",
+    "codigos": [
+      "CX958112"
+    ],
+    "motorizacoes": [
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Berlingo",
+      "Partner"
+    ],
+    "sintomasComuns": [
+      "Vazamento",
+      "folga"
+    ],
+    "observacoes": "Caixa eletrica TRW / DHB para Berlingo. Período: 2005–2024. Motorizações: 1.6.",
+    "precoEstimadoPeca": 700.0
+  },
+  {
+    "id": "peugeot-jumpy---spacetourer-80",
+    "marcaVeiculo": "Peugeot",
+    "modeloVeiculo": "Jumpy / SpaceTourer",
+    "anos": "2018–2024",
+    "tipoCaixa": "eletrica",
+    "fabricanteCaixa": "TRW / Jtekt",
+    "codigos": [],
+    "motorizacoes": [
+      "1.6"
+    ],
+    "aplicacoes": [
+      "Jumpy",
+      "SpaceTourer"
+    ],
+    "sintomasComuns": [
+      "Luz EPS",
+      "travamento"
+    ],
+    "observacoes": "Caixa eletrica TRW / Jtekt para Jumpy / SpaceTourer. Período: 2018–2024. Motorizações: 1.6.",
+    "precoEstimadoPeca": 2500.0
   }
 ];
 
