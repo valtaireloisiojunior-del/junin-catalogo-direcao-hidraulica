@@ -1,5 +1,5 @@
 /* =========================================
-   Dicatec Direção Hidráulica — Sistema de Consulta
+   Junin Direção Hidráulica — Sistema de Consulta
    Estilos modernos, clean, profissional
    Cores: azul escuro (#1e3a5f), laranja (#ff6b35), branco/cinza
    ========================================= */
@@ -57,6 +57,29 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; font-family: inherit; }
 input, select { font-family: inherit; }
+
+/* =========================================
+   AD PLACEHOLDER
+   ========================================= */
+.ad-placeholder {
+  border: 2px dashed var(--border);
+  background: #f8f9fb;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  margin: 0 1.5rem;
+  border-radius: var(--radius-sm);
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+}
+
+.ad-placeholder:first-of-type {
+  margin-top: 7.5rem;
+}
 
 /* =========================================
    HEADER
@@ -587,18 +610,6 @@ input, select { font-family: inherit; }
   margin-top: auto;
 }
 
-.card-price {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-
-.card-price-label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
 .card-btn {
   background: var(--accent);
   color: #fff;
@@ -620,6 +631,54 @@ input, select { font-family: inherit; }
 .card-btn svg {
   width: 13px;
   height: 13px;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.difficulty-badge.facil {
+  background: #e6f5e6;
+  color: #2a7a2a;
+}
+
+.difficulty-badge.media {
+  background: #fff8e6;
+  color: #b8860b;
+}
+
+.difficulty-badge.dificil {
+  background: #ffe6e6;
+  color: #c0392b;
+}
+
+.time-estimate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.time-estimate svg {
+  width: 13px;
+  height: 13px;
+  color: var(--text-muted);
 }
 
 /* =========================================
@@ -887,6 +946,232 @@ input, select { font-family: inherit; }
   color: var(--primary-dark);
 }
 
+/* =========================================
+   MODAL TABS
+   ========================================= */
+.modal-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-main);
+  padding: 0 1.5rem;
+}
+
+.modal-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.modal-tab:hover {
+  color: var(--primary-dark);
+}
+
+.modal-tab.active {
+  color: var(--primary-dark);
+  border-bottom-color: var(--accent);
+}
+
+.modal-tab-panel {
+  display: none;
+}
+
+.modal-tab-panel.active {
+  display: block;
+  animation: fadeInPanel 0.2s ease;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   PROCEDIMENTOS — CHECKLIST, STEPS, TOOLS, TORQUES
+   ========================================= */
+.checklist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.checklist-item:hover {
+  background: var(--accent-light);
+}
+
+.checklist-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checklist-item input[type="checkbox"]:checked + .checklist-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.checklist-text {
+  line-height: 1.4;
+}
+
+.step-list {
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step-list li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.step-list li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-dark);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tool-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.3rem 0;
+}
+
+.tool-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.torque-table-wrapper {
+  overflow-x: auto;
+}
+
+.torque-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.torque-table thead th {
+  background: var(--primary-dark);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.4px;
+}
+
+.torque-table tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+}
+
+.torque-table tbody tr:nth-child(even) {
+  background: var(--bg-main);
+}
+
+.torque-table tbody tr:hover {
+  background: var(--accent-light);
+}
+
+.cuidados-box {
+  background: #fff8f0;
+  border: 1px solid #ffe4d0;
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.dev-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--bg-main);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+}
+
+.dev-warning svg {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+}
+
+.dev-warning p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.empty-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
 /* Modal footer */
 .modal-footer {
   padding: 1rem 1.5rem;
@@ -1009,6 +1294,10 @@ input, select { font-family: inherit; }
   .modal { max-height: 95vh; }
   .modal-body { padding: 1rem; }
   .modal-info-grid { grid-template-columns: 1fr; }
+  .modal-tabs { padding: 0 1rem; overflow-x: auto; }
+  .modal-tab { padding: 0.6rem 0.75rem; font-size: 0.75rem; white-space: nowrap; }
+  .ad-placeholder { margin: 0 1rem; padding: 0.5rem; font-size: 0.75rem; }
+  .ad-placeholder:first-of-type { margin-top: 9.5rem; }
 }
 
 @media (max-width: 420px) {

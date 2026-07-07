@@ -1,5 +1,5 @@
 /**
- * Dicatec Direção Hidráulica — Aplicação Principal
+ * Junin Direção Hidráulica — Aplicação Principal
  * Vanilla JS ES6+, sem frameworks
  */
 
@@ -124,6 +124,15 @@ function obterIconeTipo(tipo) {
     eletrica: 'zap'
   };
   return map[tipo] || 'box';
+}
+
+function obterLabelDificuldade(dificuldade) {
+  const map = {
+    facil: 'Fácil',
+    media: 'Média',
+    dificil: 'Difícil'
+  };
+  return map[dificuldade] || 'Média';
 }
 
 // =========================================
@@ -341,9 +350,12 @@ function renderCard(item, idx) {
         ${maisCodigos ? `<span class="code-tag">${maisCodigos}</span>` : ''}
       </div>
       <div class="card-footer">
-        <div>
-          <div class="card-price-label">Média mercado</div>
-          <div class="card-price">${formatarPreco(item.precoEstimadoPeca)}</div>
+        <div class="card-meta">
+          <span class="difficulty-badge ${item.dificuldade || 'media'}">${obterLabelDificuldade(item.dificuldade)}</span>
+          <span class="time-estimate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${item.tempoEstimado || '-'}
+          </span>
         </div>
         <button class="card-btn" aria-label="Ver detalhes">
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -382,6 +394,9 @@ function abrirModal(id) {
   // Bind botão fechar
   const btnFechar = document.getElementById('btnModalClose');
   if (btnFechar) btnFechar.addEventListener('click', fecharModal);
+
+  // Bind tabs
+  bindModalTabs();
 }
 
 function fecharModal() {
@@ -391,6 +406,179 @@ function fecharModal() {
 
 function renderModalContent(item) {
   const tipoLabel = obterLabelTipo(item.tipoCaixa);
+  const temProcedimentos = item.checklistDesmontagem && item.checklistDesmontagem.length > 0;
+
+  const fichaTecnica = `
+    <div class="modal-section">
+      <div class="modal-info-grid">
+        <div class="modal-info-item">
+          <div class="label">Anos</div>
+          <div class="value">${item.anos}</div>
+        </div>
+        <div class="modal-info-item">
+          <div class="label">Tipo</div>
+          <div class="value">${tipoLabel}</div>
+        </div>
+        <div class="modal-info-item">
+          <div class="label">Fabricante</div>
+          <div class="value">${item.fabricanteCaixa}</div>
+        </div>
+        <div class="modal-info-item">
+          <div class="label">Dificuldade</div>
+          <div class="value"><span class="difficulty-badge ${item.dificuldade || 'media'}">${obterLabelDificuldade(item.dificuldade)}</span></div>
+        </div>
+        <div class="modal-info-item">
+          <div class="label">Tempo Estimado</div>
+          <div class="value">${item.tempoEstimado || '-'}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        Códigos de Referência
+      </div>
+      <div class="tags-list">
+        ${item.codigos.map(c => `<span class="tag code">${c}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Motorizações
+      </div>
+      <div class="tags-list">
+        ${item.motorizacoes.map(m => `<span class="tag motor">${m}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Aplicações Compatíveis
+      </div>
+      <div class="aplicacoes-list">
+        ${item.aplicacoes.map(a => `
+          <div class="aplicacao-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            ${a}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        Sintomas Comuns
+      </div>
+      <div class="tags-list">
+        ${item.sintomasComuns.map(s => `<span class="tag symptom">${s}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Dicas Técnicas e Observações
+      </div>
+      <div class="observacoes-box">
+        ${item.observacoes}
+      </div>
+    </div>
+  `;
+
+  const procedimentos = temProcedimentos ? `
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Checklist Pré-Desmontagem
+      </div>
+      <div class="checklist-list">
+        ${item.checklistDesmontagem.map((chk, i) => `
+          <label class="checklist-item">
+            <input type="checkbox" id="chk-${item.id}-${i}">
+            <span class="checklist-text">${chk}</span>
+          </label>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+        Passo a Passo — Desmontagem
+      </div>
+      <ol class="step-list">
+        ${item.passoAPassoDesmontagem.map(p => `<li>${p.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+      </ol>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        Passo a Passo — Montagem
+      </div>
+      <ol class="step-list">
+        ${item.passoAPassoMontagem.map(p => `<li>${p.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+      </ol>
+    </div>
+  ` : `
+    <div class="modal-section">
+      <div class="dev-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p>Procedimento em desenvolvimento. Consulte a ficha técnica.</p>
+      </div>
+    </div>
+  `;
+
+  const torquesEFerramentas = `
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Ferramentas Necessárias
+      </div>
+      <div class="tools-list">
+        ${item.ferramentas && item.ferramentas.length > 0 ? item.ferramentas.map(f => `
+          <div class="tool-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            ${f}
+          </div>
+        `).join('') : '<p class="empty-text">Nenhuma ferramenta listada.</p>'}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Torques de Aperto
+      </div>
+      <div class="torque-table-wrapper">
+        <table class="torque-table">
+          <thead>
+            <tr><th>Peça / Componente</th><th>Torque</th></tr>
+          </thead>
+          <tbody>
+            ${item.torques && item.torques.length > 0 ? item.torques.map(t => `<tr><td>${t.parte}</td><td>${t.valor}</td></tr>`).join('') : '<tr><td colspan="2">Nenhum torque listado.</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    ${item.cuidadosEspeciais ? `
+    <div class="modal-section">
+      <div class="modal-section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Cuidados Especiais
+      </div>
+      <div class="cuidados-box">
+        ${item.cuidadosEspeciais}
+      </div>
+    </div>
+    ` : ''}
+  `;
 
   return `
     <div class="modal-header">
@@ -402,87 +590,20 @@ function renderModalContent(item) {
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-tab="ficha">Ficha Técnica</button>
+      <button class="modal-tab" data-tab="procedimentos">Procedimentos</button>
+      <button class="modal-tab" data-tab="torques">Torques e Ferramentas</button>
+    </div>
     <div class="modal-body">
-      <!-- Info Grid -->
-      <div class="modal-section">
-        <div class="modal-info-grid">
-          <div class="modal-info-item">
-            <div class="label">Anos</div>
-            <div class="value">${item.anos}</div>
-          </div>
-          <div class="modal-info-item">
-            <div class="label">Tipo</div>
-            <div class="value">${tipoLabel}</div>
-          </div>
-          <div class="modal-info-item">
-            <div class="label">Fabricante</div>
-            <div class="value">${item.fabricanteCaixa}</div>
-          </div>
-          <div class="modal-info-item">
-            <div class="label">Preço Estimado</div>
-            <div class="value price">${formatarPreco(item.precoEstimadoPeca)}</div>
-          </div>
-        </div>
+      <div class="modal-tab-panel active" data-panel="ficha">
+        ${fichaTecnica}
       </div>
-
-      <!-- Códigos -->
-      <div class="modal-section">
-        <div class="modal-section-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-          Códigos de Referência
-        </div>
-        <div class="tags-list">
-          ${item.codigos.map(c => `<span class="tag code">${c}</span>`).join('')}
-        </div>
+      <div class="modal-tab-panel" data-panel="procedimentos">
+        ${procedimentos}
       </div>
-
-      <!-- Motorizações -->
-      <div class="modal-section">
-        <div class="modal-section-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          Motorizações
-        </div>
-        <div class="tags-list">
-          ${item.motorizacoes.map(m => `<span class="tag motor">${m}</span>`).join('')}
-        </div>
-      </div>
-
-      <!-- Aplicações -->
-      <div class="modal-section">
-        <div class="modal-section-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          Aplicações Compatíveis
-        </div>
-        <div class="aplicacoes-list">
-          ${item.aplicacoes.map(a => `
-            <div class="aplicacao-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              ${a}
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Sintomas -->
-      <div class="modal-section">
-        <div class="modal-section-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-          Sintomas Comuns
-        </div>
-        <div class="tags-list">
-          ${item.sintomasComuns.map(s => `<span class="tag symptom">${s}</span>`).join('')}
-        </div>
-      </div>
-
-      <!-- Observações -->
-      <div class="modal-section">
-        <div class="modal-section-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Dicas Técnicas e Observações
-        </div>
-        <div class="observacoes-box">
-          ${item.observacoes}
-        </div>
+      <div class="modal-tab-panel" data-panel="torques">
+        ${torquesEFerramentas}
       </div>
     </div>
     <div class="modal-footer">
@@ -493,6 +614,25 @@ function renderModalContent(item) {
       </button>
     </div>
   `;
+}
+
+// =========================================
+// MODAL TABS
+// =========================================
+function bindModalTabs() {
+  const tabs = dom.modalBody.querySelectorAll('.modal-tab');
+  const panels = dom.modalBody.querySelectorAll('.modal-tab-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panel = dom.modalBody.querySelector(`[data-panel="${target}"]`);
+      if (panel) panel.classList.add('active');
+    });
+  });
 }
 
 // =========================================
