@@ -56,6 +56,16 @@ function bindEvents() {
     aplicarFiltros();
   }, 150));
 
+  // Widget de IA
+  const aiBtn = document.getElementById('aiBtn');
+  const aiInput = document.getElementById('aiInput');
+  if (aiBtn && aiInput) {
+    aiBtn.addEventListener('click', () => perguntarIA(aiInput.value));
+    aiInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') perguntarIA(aiInput.value);
+    });
+  }
+
   // Reset de filtros
   dom.btnResetFilters.addEventListener('click', () => {
     resetarFiltros();
@@ -81,6 +91,101 @@ function bindEvents() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') fecharModal();
   });
+}
+
+// =========================================
+// WIDGET: MECÂNICO VIRTUAL (IA)
+// =========================================
+function perguntarIA(pergunta) {
+  if (!pergunta || pergunta.trim().length < 3) {
+    mostrarAIResultado('<p class="ai-error">Descreva o problema com mais detalhes.</p>');
+    return;
+  }
+
+  const perguntaNorm = normalizarTexto(pergunta);
+  const palavras = perguntaNorm.split(/\s+/).filter(p => p.length > 2);
+
+  // Busca inteligente no catálogo
+  const resultados = state.dados.map(item => {
+    let score = 0;
+    const textoItem = normalizarTexto([
+      item.marcaVeiculo,
+      item.modeloVeiculo,
+      item.anos,
+      item.fabricanteCaixa,
+      ...(item.sintomasComuns || []),
+      ...(item.defeitosDetalhados || []).map(d => d.defeito),
+      ...(item.defeitosDetalhados || []).map(d => d.causaRaiz),
+      item.observacoes
+    ].join(' '));
+
+    for (const palavra of palavras) {
+      if (textoItem.includes(palavra)) score += 1;
+    }
+
+    // Bônus para palavras-chave específicas
+    if (perguntaNorm.includes('vazamento') && item.sintomasComuns.some(s => s.toLowerCase().includes('vazamento'))) score += 3;
+    if (perguntaNorm.includes('folga') && item.sintomasComuns.some(s => s.toLowerCase().includes('folga'))) score += 3;
+    if (perguntaNorm.includes('pesada') && item.sintomasComuns.some(s => s.toLowerCase().includes('pesada'))) score += 3;
+    if (perguntaNorm.includes('ruido') && item.sintomasComuns.some(s => s.toLowerCase().includes('ruído'))) score += 3;
+
+    return { item, score };
+  }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).slice(0, 5);
+
+  if (resultados.length === 0) {
+    mostrarAIResultado(`
+      <div class="ai-empty">
+        <p>Não encontrei no catálogo uma caixa que corresponda exatamente a essa descrição.</p>
+        <p><strong>Tente:</strong> "vazamento no retentor do Gol G5", "direção pesada do Palio", "folga na caixa do Corsa"</p>
+      </div>
+    `);
+    return;
+  }
+
+  const html = resultados.map(r => {
+    const item = r.item;
+    const defeitosRelevantes = (item.defeitosDetalhados || []).filter(d => {
+      const textoDefeito = normalizarTexto(d.defeito + ' ' + d.causaRaiz + ' ' + d.sintomasVisuais);
+      return palavras.some(p => textoDefeito.includes(p));
+    }).slice(0, 2);
+
+    const defeitosHtml = defeitosRelevantes.length > 0 ? `
+      <div class="ai-defeitos-match">
+        <strong>Defeitos relacionados:</strong>
+        <ul>${defeitosRelevantes.map(d => `<li>• ${d.defeito} — ${d.solucao.substring(0, 80)}...</li>`).join('')}</ul>
+      </div>
+    ` : '';
+
+    return `
+      <div class="ai-result-card" data-id="${item.id}">
+        <div class="ai-result-header">
+          <span class="ai-result-brand">${item.marcaVeiculo}</span>
+          <span class="ai-result-score">${r.score} match</span>
+        </div>
+        <h4 class="ai-result-title">${item.modeloVeiculo}</h4>
+        <p class="ai-result-years">${item.anos} | ${item.fabricanteCaixa}</p>
+        <p class="ai-result-sintoma">Sintoma: ${item.sintomasComuns[0]}</p>
+        ${defeitosHtml}
+        <button class="ai-result-btn" onclick="abrirModal('${item.id}')">
+          Ver procedimento completo →
+        </button>
+      </div>
+    `;
+  }).join('');
+
+  mostrarAIResultado(`
+    <div class="ai-results-header">
+      <strong>${resultados.length} resultado(s)</strong> encontrado(s) para "${pergunta}"
+    </div>
+    <div class="ai-results-grid">${html}</div>
+  `);
+}
+
+function mostrarAIResultado(html) {
+  const container = document.getElementById('aiResults');
+  if (!container) return;
+  container.innerHTML = html;
+  container.style.display = 'block';
 }
 
 // =========================================
@@ -404,6 +509,45 @@ function fecharModal() {
   document.body.style.overflow = '';
 }
 
+function renderDefeitosDetalhados(item) {
+  const defeitos = item.defeitosDetalhados || [];
+  if (defeitos.length === 0) {
+    return `<div class="modal-section"><div class="dev-warning"><p>Defeitos detalhados em desenvolvimento para este modelo.</p></div></div>`;
+  }
+  return defeitos.map((d, i) => `
+    <div class="defeito-card">
+      <div class="defeito-header">
+        <span class="defeito-numero">${i + 1}</span>
+        <h3 class="defeito-titulo">${d.defeito}</h3>
+        <span class="defeito-prioridade ${d.prioridade}">${d.prioridade.toUpperCase()}</span>
+      </div>
+      <div class="defeito-body">
+        <div class="defeito-row">
+          <span class="defeito-label">Causa Raiz:</span>
+          <span class="defeito-text">${d.causaRaiz}</span>
+        </div>
+        <div class="defeito-row">
+          <span class="defeito-label">Sintomas Visuais:</span>
+          <span class="defeito-text">${d.sintomasVisuais}</span>
+        </div>
+        <div class="defeito-row">
+          <span class="defeito-label">Diagnóstico:</span>
+          <span class="defeito-text">${d.diagnostico}</span>
+        </div>
+        <div class="defeito-row">
+          <span class="defeito-label">Solução:</span>
+          <span class="defeito-text">${d.solucao}</span>
+        </div>
+        <div class="defeito-meta">
+          <span class="defeito-tag tempo">⏱ ${d.tempoReparo}</span>
+          <span class="defeito-tag custo">💰 ${d.custoPeca}</span>
+        </div>
+        ${d.prevenção ? `<div class="defeito-prevention"><strong>Prevenção:</strong> ${d.prevenção}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
 function renderModalContent(item) {
   const tipoLabel = obterLabelTipo(item.tipoCaixa);
   const temProcedimentos = item.checklistDesmontagem && item.checklistDesmontagem.length > 0;
@@ -592,12 +736,16 @@ function renderModalContent(item) {
     </div>
     <div class="modal-tabs">
       <button class="modal-tab active" data-tab="ficha">Ficha Técnica</button>
+      <button class="modal-tab" data-tab="defeitos">Defeitos Detalhados</button>
       <button class="modal-tab" data-tab="procedimentos">Procedimentos</button>
       <button class="modal-tab" data-tab="torques">Torques e Ferramentas</button>
     </div>
     <div class="modal-body">
       <div class="modal-tab-panel active" data-panel="ficha">
         ${fichaTecnica}
+      </div>
+      <div class="modal-tab-panel" data-panel="defeitos">
+        ${renderDefeitosDetalhados(item)}
       </div>
       <div class="modal-tab-panel" data-panel="procedimentos">
         ${procedimentos}

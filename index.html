@@ -97,6 +97,23 @@
 
     <!-- Content -->
     <section class="content">
+      <!-- Widget: Pergunte ao Mecânico Virtual -->
+      <div class="ai-widget">
+        <div class="ai-widget-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
+          <h3>Pergunte ao Mecânico Virtual</h3>
+        </div>
+        <p class="ai-widget-desc">Descreva o problema do cliente (ex: "vazamento no retentor do Gol G5", "direção pesada do Palio")</p>
+        <div class="ai-widget-input-group">
+          <input type="text" id="aiInput" placeholder="Ex: meu Gol está com vazamento na direção..." autocomplete="off">
+          <button id="aiBtn" class="ai-widget-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Perguntar
+          </button>
+        </div>
+        <div id="aiResults" class="ai-results" style="display:none"></div>
+      </div>
+
       <div class="results-header">
         <div class="results-count" id="resultsCount">0</div>
         <div class="results-sort">
