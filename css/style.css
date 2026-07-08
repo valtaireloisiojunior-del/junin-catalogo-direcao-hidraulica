@@ -1479,3 +1479,121 @@ input, select { font-family: inherit; }
 .ai-empty { color: var(--text-muted); font-size: 0.85rem; }
 .ai-empty p { margin-bottom: 0.5rem; }
 .ai-empty p:last-child { margin-bottom: 0; }
+
+/* =========================================
+   WIDGET: IDENTIFICAÇÃO POR VEÍCULO (NOVO)
+   ========================================= */
+
+.vehicle-id-input-group-large {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.vehicle-id-input-group-large input {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  outline: none;
+  transition: var(--transition);
+  min-height: 52px;
+}
+
+.vehicle-id-input-group-large input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.12);
+}
+
+.vehicle-id-input-group-large input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.vehicle-id-btn-large {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+  color: #fff;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+}
+
+.vehicle-id-btn-large:hover {
+  background: linear-gradient(135deg, var(--primary-mid) 0%, var(--primary-light) 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.vehicle-id-btn-large svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* =========================================
+   WIDGET: MECÂNICO VIRTUAL (AUMENTADO)
+   ========================================= */
+
+.ai-widget-input-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.ai-widget-input-group input {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  outline: none;
+  transition: var(--transition);
+  min-height: 52px;
+}
+
+.ai-widget-input-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.12);
+}
+
+.ai-widget-input-group input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.ai-widget-btn {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #fff;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+}
+
+.ai-widget-btn:hover {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, #d94e1f 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ai-widget-btn svg {
+  width: 20px;
+  height: 20px;
+}

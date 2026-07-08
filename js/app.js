@@ -100,69 +100,13 @@ function bindEvents() {
 // IDENTIFICAÇÃO POR VEÍCULO
 // =========================================
 function bindVehicleIdEvents() {
-  // Tabs de identificação
-  const tabs = document.querySelectorAll('.vehicle-id-tab');
-  const panels = document.querySelectorAll('.vehicle-id-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      const panel = document.querySelector(`.vehicle-id-panel[data-panel="${target}"]`);
-      if (panel) panel.classList.add('active');
-    });
-  });
-
-  // Botões de busca
-  const placaBtn = document.getElementById('placaBtn');
-  const placaInput = document.getElementById('placaInput');
-  if (placaBtn && placaInput) {
-    placaBtn.addEventListener('click', () => buscarPorPlaca(placaInput.value));
-    placaInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorPlaca(placaInput.value); });
-  }
-
-  const chassiBtn = document.getElementById('chassiBtn');
-  const chassiInput = document.getElementById('chassiInput');
-  if (chassiBtn && chassiInput) {
-    chassiBtn.addEventListener('click', () => buscarPorChassi(chassiInput.value));
-    chassiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorChassi(chassiInput.value); });
-  }
-
+  // Busca por Modelo + Ano (único campo)
   const modeloBtn = document.getElementById('modeloBtn');
   const modeloInput = document.getElementById('modeloInput');
   if (modeloBtn && modeloInput) {
     modeloBtn.addEventListener('click', () => buscarPorModelo(modeloInput.value));
     modeloInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorModelo(modeloInput.value); });
   }
-}
-
-function buscarPorPlaca(placa) {
-  if (!placa || placa.trim().length < 3) {
-    mostrarVehicleIdResultado('<p class="ai-error">Digite uma placa válida.</p>');
-    return;
-  }
-  const placaNorm = placa.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
-  const prefixo = placaNorm.substring(0, 3);
-  
-  const resultados = typeof mapeamentoVeiculos !== 'undefined' ? mapeamentoVeiculos.filter(m => {
-    return m.placaPrefixo && m.placaPrefixo.some(p => prefixo.startsWith(p));
-  }) : [];
-
-  if (resultados.length === 0) {
-    buscarPorTexto(placa);
-    return;
-  }
-
-  renderVehicleResults(resultados, `Placa: ${placa}`);
-}
-
-function buscarPorChassi(chassi) {
-  if (!chassi || chassi.trim().length < 6) {
-    mostrarVehicleIdResultado('<p class="ai-error">Digite pelo menos 6 caracteres do chassi.</p>');
-    return;
-  }
-  buscarPorTexto(chassi);
 }
 
 function buscarPorModelo(texto) {
