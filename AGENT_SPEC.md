@@ -1,109 +1,95 @@
-# Dicatec Direção Hidráulica — Especificação
+# Junin Direção Hidráulica — Evolução do Site
+## Especificação de Arquitetura v1.0
 
-## Objetivo
-Sistema HTML offline tipo "Dicatec" para consulta técnica de caixas de direção hidráulica, mecânica e elétrica (EPS) dos veículos nacionais e mais vendidos no Brasil.
+## Visão do Projeto
+Transformar o catálogo técnico offline em uma **plataforma de consulta online** que:
+1. Identifica a caixa de direção correta pelo veículo (placa, chassi, ano/modelo)
+2. Faz pré-diagnóstico por sintomas (IA local baseada no catálogo)
+3. Mostra referências de peças com descrição e link para compra
+4. Gera receita via comissão em vendas + anúncios
 
-## Stack
-- HTML5 puro, CSS3, Vanilla JS (ES6+)
-- Sem framework (leve, offline, roda em qualquer navegador)
-- Dados em JSON embutido no JS (pode ser substituído por API futuramente)
-- Fonte: Google Fonts (Inter)
-- Ícones: Lucide CDN ou SVG inline
+## Requisitos Funcionais
 
-## Arquitetura de Dados
+### RF1 — Identificação por Veículo
+- Input: placa do veículo (Mercosul/brasileira), chassi, ou ano+modelo
+- Output: caixa de direção compatível, com foto, código, preço estimado
+- Fonte de dados: tabela FIPE + mapeamento manual de modelos → caixas
 
-```typescript
-interface CaixaDirecao {
-  id: string;
-  marcaVeiculo: string;        // Fiat, VW, GM, Ford, Renault, Toyota, Honda...
-  modeloVeiculo: string;       // Palio, Gol, Onix, Ka, Sandero...
-  anos: string;              // "2001-2016"
-  tipoCaixa: "hidraulica" | "mecanica" | "eletrica";
-  fabricanteCaixa: string;     // DHB, TRW, Koyo, ZF, Jtekt, Bosch...
-  codigos: string[];         // Referências originais
-  motorizacoes: string[];    // 1.0, 1.4, 1.6, 1.8...
-  aplicacoes: string[];      // Modelos similares que usam a mesma caixa
-  sintomasComuns: string[];   // Vazamento, direção dura, folga...
-  observacoes: string;        // Dicas técnicas, cuidados
-  precoEstimadoPeca: number; // R$ (média mercado)
-  imagem?: string;           // URL ou base64
-}
+### RF2 — Pré-diagnóstico com IA
+- Input: sintomas descritos pelo cliente ("direção pesada", "vazamento")
+- Output: possível defeito, caixa afetada, procedimento sugerido, custo estimado
+- Tecnologia: matching de palavras-chave + scoring no catálogo local (sem API externa)
+
+### RF3 — Referências de Peças
+- Cada código de referência (ex: 16900162S) tem descrição clara
+- Click no código → abre busca no Google em nova aba
+- Exemplo: "16900162S — Caixa de direção hidráulica TRW Palio/Siena 2001-2016"
+
+### RF4 — Preços de Kit de Reparo
+- As caixas só abrem com kit inteiro (retentor + bucha + anéis + vedantes)
+- Preços exibidos são de kit completo, não só retentor
+- Fonte: preços médios de Mercado Livre, Fort Distribuidora, TDS Parts
+
+### RF5 — Monetização
+- Call-to-action para compra da caixa (links de afiliado)
+- Espaços para anúncios Google AdSense
+- Formulário de contato para orçamento
+
+## Arquitetura Técnica
+
+### Stack
+- Frontend: HTML5 + CSS3 + Vanilla JS (ES6+)
+- Hospedagem: GitHub Pages (gratuito)
+- Dados: JSON estático (data.js)
+- Não há backend — tudo roda no cliente
+
+### Estrutura de Dados
+```javascript
+// Novo campo: mapeamento veículo → caixa
+const mapeamentoVeiculos = [
+  { placaPrefixo: ["ABC", "DEF"], modelo: "Palio", ano: "2001-2016", caixaId: "fiat-palio-siena-strada-trw-01" },
+  // ...
+];
+
+// Novo campo: referências com descrição
+const referenciasPecas = {
+  "16900162S": { descricao: "Caixa de direção hidráulica TRW Palio/Siena/Strada 2001-2016", tipo: "caixa_completa", precoKit: "R$ 350-600" },
+  "5173.7077": { descricao: "Kit de reparo caixa de direção DHB Palio/Siena", tipo: "kit_reparo", precoKit: "R$ 80-150" },
+  // ...
+};
+
+// Novo campo: sintomas → defeitos (base para IA)
+const baseDiagnostico = [
+  { sintomas: ["vazamento", "retentor", "cremalheira"], caixaIds: ["fiat-palio-...", "vw-gol-..."], defeito: "Retentor da cremalheira degradado", urgencia: "alta" },
+  // ...
+];
 ```
 
-## Interface
+## Equipe de Agentes
 
-### Tela Principal
-- **Header fixo:** Logo + campo de busca global + filtros rápidos
-- **Sidebar:** Filtros por marca, tipo de caixa, fabricante
-- **Grid principal:** Cards de caixa com info resumida
-- **Modal de detalhes:** Tudo sobre a caixa selecionada
+### Agente 1: Arquiteto de Dados
+- Tarefa: Expandir data.js com mapeamento de veículos, referências de peças, preços de kit, base de diagnóstico
+- Arquivos: js/data.js
 
-### Filtros
-- Marca do veículo (Fiat, VW, GM, Ford, Renault, Toyota, Honda, Hyundai, Peugeot, Citroën...)
-- Tipo de caixa (Hidráulica / Mecânica / Elétrica EPS)
-- Fabricante da caixa (DHB, TRW, Koyo, ZF, Bosch...)
-- Ano do veículo
+### Agente 2: Frontend — Identificação por Veículo
+- Tarefa: Criar interface de input (placa/chassi/ano-modelo) e lógica de match
+- Arquivos: index.html, js/app.js, css/style.css
 
-### Busca
-- Busca inteligente: modelo, marca, código, ano
-- Resultados em tempo real (filtra conforme digita)
+### Agente 3: Frontend — Pré-diagnóstico IA
+- Tarefa: Melhorar o widget "Mecânico Virtual" com scoring inteligente e resposta estruturada
+- Arquivos: js/app.js, css/style.css
 
-### Cards de Resultado
-```
-[FIAT] Palio / Siena / Strada Fire (2001-2016)
-Tipo: Hidráulica | Caixa: TRW
-Códigos: 5173... / 5180...
-Motorizações: 1.0 / 1.3 / 1.4 / 1.6
-Sintomas: Vazamento retentor, folga cremalheira
-[Ver detalhes]
-```
+### Agente 4: Frontend — Referências e Monetização
+- Tarefa: Criar cards de referências com descrição, preço de kit, link Google, CTA de compra, espaços de anúncio
+- Arquivos: index.html, js/app.js, css/style.css
 
-### Modal de Detalhes
-- Todos os dados da interface
-- Lista de aplicações (quais mais carros usam essa caixa)
-- Dicas de reparo
-- Referências cruzadas
+## Integração
+- Todos os agentes trabalham no mesmo repo
+- Merge final: index.html unificado, app.js modularizado, data.js expandido
+- Validação: site deve abrir localmente e no GitHub Pages
 
-## Pesquisa de Dados — O que reunir
-
-### Marcas prioritárias (nacionais + populares)
-- Fiat (Palio, Siena, Uno, Strada, Punto, Cronos, Argo, Mobi, Toro)
-- Volkswagen (Gol, Voyage, Fox, Polo, Virtus, T-Cross, Nivus, Jetta, Golf)
-- Chevrolet (Onix, Prisma, Corsa, Celta, Classic, Agile, Montana, Spin)
-- Ford (Ka, Fiesta, Ecosport, Focus, Ranger, Maverick)
-- Renault (Clio, Sandero, Logan, Duster, Captur, Kwid)
-- Toyota (Corolla, Etios, Yaris, Hilux, SW4)
-- Honda (Civic, City, Fit, HR-V)
-- Hyundai (HB20, Creta, i30, Tucson)
-- Peugeot (206, 207, 208, 307, 308, Hoggar)
-- Citroën (C3, C4, C4 Lounge, Aircross)
-- Nissan (March, Versa, Sentra, Kicks)
-
-### Tipos de caixa a mapear
-- DHB (Delphi / Nexteer)
-- TRW (ZF TRW)
-- Koyo / Jtekt
-- ZF (ZF Lenksysteme)
-- Bosch
-- Visteon
-- Magneti Marelli
-
-### Fontes de pesquisa
-- Catálogos de distribuidoras (Fort, Kargil, OLG, BrasCam)
-- Fóruns de mecânicos (Fórum Mecânica, Clube do Carro)
-- Sites de peças (Mercado Livre, AutoParts, GapRio)
-- Manuais técnicos de montadoras
-- Datasheets de fabricantes de caixa
-
-## Formato de Entrega
-- Diretório: `sistema-dicatec-direcao/`
-- `index.html` — Página principal
-- `css/style.css` — Estilos
-- `js/app.js` — Lógica e dados
-- `js/data.js` — Banco de dados em JSON (pode ser separado em múltiplos arquivos por marca)
-- README.md — Como usar
-
-## Contrato entre Pesquisador e Implementador
-- Pesquisador: Gera `data_raw.md` com tabelas de dados brutos
-- Implementador: Converte em `js/data.js` + cria interface
-- Main agent: Integra, valida e entrega
+## Próximos Passos
+1. Criar branch para evolução
+2. Delegar tarefas para agentes
+3. Integrar mudanças
+4. Testar e subir
