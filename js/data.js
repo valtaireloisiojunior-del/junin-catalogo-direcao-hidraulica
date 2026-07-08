@@ -759,7 +759,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Retentor da cremalheira degradado",
     "urgencia": "alta",
-    "custoEstimado": "R$ 80-150 (kit de reparo)"
+    "custoEstimado": "R$ 120-200 (kit de reparo com margem)"
   },
   {
     "sintomas": [
@@ -776,7 +776,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Folga excessiva na cremalheira ou bucha do braço pitman",
     "urgencia": "media",
-    "custoEstimado": "R$ 150-300 (ajuste ou troca)"
+    "custoEstimado": "R$ 350-700 (caixa remanufaturada ou reparo completo)"
   },
   {
     "sintomas": [
@@ -792,7 +792,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Bomba hidráulica fraca ou selim apertado demais",
     "urgencia": "media",
-    "custoEstimado": "R$ 200-400 (bomba ou ajuste)"
+    "custoEstimado": "R$ 250-500 (bomba ou ajuste completo)"
   },
   {
     "sintomas": [
@@ -809,7 +809,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Desgaste do pinhão ou cremalheira, ou falta de fluido",
     "urgencia": "media",
-    "custoEstimado": "R$ 300-700 (reparo ou caixa nova)"
+    "custoEstimado": "R$ 400-900 (reparo completo ou caixa remanufaturada)"
   },
   {
     "sintomas": [
@@ -823,7 +823,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Retentor do pinhão degradado",
     "urgencia": "alta",
-    "custoEstimado": "R$ 70-140 (kit de reparo)"
+    "custoEstimado": "R$ 100-180 (kit de reparo com margem)"
   },
   {
     "sintomas": [
@@ -837,7 +837,7 @@ const baseDiagnostico = [
     ],
     "defeito": "Vedação interna comprometida - necessário kit completo",
     "urgencia": "alta",
-    "custoEstimado": "R$ 80-160 (kit completo)"
+    "custoEstimado": "R$ 150-280 (kit completo com margem)"
   },
   {
     "sintomas": [
@@ -849,7 +849,7 @@ const baseDiagnostico = [
     "caixaIds": [],
     "defeito": "Falha no sistema de direção elétrica EPS - necessário scanner",
     "urgencia": "alta",
-    "custoEstimado": "R$ 400-1200 (diagnóstico + reparo)"
+    "custoEstimado": "R$ 500-1500 (diagnóstico + reparo especializado)"
   }
 ];
 
@@ -973,7 +973,7 @@ const catalogoCaixasDirecao = [
         "diagnostico": "Elevar o veículo e inspecionar o retentor da cremalheira (lado direito da caixa). Verificar se o vazamento vem do retentor ou da junta da tampa. Diferenciar de vazamento da bomba hidráulica.",
         "solucao": "1. Substituir o retentor da cremalheira (usar retentor NBR original ou equivalente de qualidade). 2. Limpar o alojamento com thinner sem arranhar. 3. Lubrificar o novo retentor com graxa NBR antes de instalar. 4. Pressionar com ferramenta adequada. 5. Trocar todo o fluido hidráulico.",
         "tempoReparo": "1,5-2 horas",
-        "custoPeca": "R$ 15-40 (retentor) + R$ 30-50 (fluido)",
+        "custoPeca": "R$ 80-150 (kit retentor) + R$ 40-60 (fluido)",
         "prioridade": "alta",
         "prevenção": "Trocar fluido a cada 60.000 km. Usar ATF Dexron III ou fluido especificado pelo fabricante."
       },
@@ -984,7 +984,7 @@ const catalogoCaixasDirecao = [
         "diagnostico": "Com o veículo parado, girar o volante levemente para cada lado medindo a folga. Verificar o selim de ajuste se está solto. Inspecionar o eixo da cremalheira por sulcos ao desmontar.",
         "solucao": "1. Ajustar o selim de pré-carga com torque de 3,5-4,5 kgf.m. 2. Se o eixo da cremalheira tiver sulcos profundos, substituir a caixa (reparo não garante). 3. Verificar e substituir a bucha do braço pitman se necessário.",
         "tempoReparo": "2-3 horas",
-        "custoPeca": "R$ 350-800 (caixa remanufaturada) ou R$ 800-1500 (nova)",
+        "custoPeca": "R$ 450-950 (caixa remanufaturada) ou R$ 900-1600 (nova)",
         "prioridade": "média",
         "prevenção": "Evitar forçar o volante no limite. Não deixar o veículo parado com o volante girado ao máximo."
       },
@@ -995,7 +995,7 @@ const catalogoCaixasDirecao = [
         "diagnostico": "Verificar nível do fluido no reservatório. Se estiver normal, desligar o motor e girar o volante — se o ruído continua, é mecânico (caixa). Se o ruído some, é hidráulico (bomba ou ar no sistema).",
         "solucao": "1. Se for falta de fluido: completar, verificar vazamentos e sangrar o sistema. 2. Se for ar no sistema: sangrar pelos bicos de sangria das mangueiras. 3. Se for desgaste mecânico: abrir a caixa e inspecionar o pinhão e cremalheira.",
         "tempoReparo": "1-3 horas",
-        "custoPeca": "Varia conforme a causa",
+        "custoPeca": "R$ 100-800 (conforme a causa identificada)",
         "prioridade": "média",
         "prevenção": "Manter nível de fluido correto. Sangrar o sistema após qualquer intervenção na direção hidráulica."
       }
