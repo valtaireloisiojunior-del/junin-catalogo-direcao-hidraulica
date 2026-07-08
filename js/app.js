@@ -56,6 +56,9 @@ function bindEvents() {
     aplicarFiltros();
   }, 150));
 
+  // Widget de Identificação por Veículo
+  bindVehicleIdEvents();
+
   // Widget de IA
   const aiBtn = document.getElementById('aiBtn');
   const aiInput = document.getElementById('aiInput');
@@ -94,6 +97,145 @@ function bindEvents() {
 }
 
 // =========================================
+// IDENTIFICAÇÃO POR VEÍCULO
+// =========================================
+function bindVehicleIdEvents() {
+  // Tabs de identificação
+  const tabs = document.querySelectorAll('.vehicle-id-tab');
+  const panels = document.querySelectorAll('.vehicle-id-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panel = document.querySelector(`.vehicle-id-panel[data-panel="${target}"]`);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // Botões de busca
+  const placaBtn = document.getElementById('placaBtn');
+  const placaInput = document.getElementById('placaInput');
+  if (placaBtn && placaInput) {
+    placaBtn.addEventListener('click', () => buscarPorPlaca(placaInput.value));
+    placaInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorPlaca(placaInput.value); });
+  }
+
+  const chassiBtn = document.getElementById('chassiBtn');
+  const chassiInput = document.getElementById('chassiInput');
+  if (chassiBtn && chassiInput) {
+    chassiBtn.addEventListener('click', () => buscarPorChassi(chassiInput.value));
+    chassiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorChassi(chassiInput.value); });
+  }
+
+  const modeloBtn = document.getElementById('modeloBtn');
+  const modeloInput = document.getElementById('modeloInput');
+  if (modeloBtn && modeloInput) {
+    modeloBtn.addEventListener('click', () => buscarPorModelo(modeloInput.value));
+    modeloInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') buscarPorModelo(modeloInput.value); });
+  }
+}
+
+function buscarPorPlaca(placa) {
+  if (!placa || placa.trim().length < 3) {
+    mostrarVehicleIdResultado('<p class="ai-error">Digite uma placa válida.</p>');
+    return;
+  }
+  const placaNorm = placa.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const prefixo = placaNorm.substring(0, 3);
+  
+  const resultados = typeof mapeamentoVeiculos !== 'undefined' ? mapeamentoVeiculos.filter(m => {
+    return m.placaPrefixo && m.placaPrefixo.some(p => prefixo.startsWith(p));
+  }) : [];
+
+  if (resultados.length === 0) {
+    buscarPorTexto(placa);
+    return;
+  }
+
+  renderVehicleResults(resultados, `Placa: ${placa}`);
+}
+
+function buscarPorChassi(chassi) {
+  if (!chassi || chassi.trim().length < 6) {
+    mostrarVehicleIdResultado('<p class="ai-error">Digite pelo menos 6 caracteres do chassi.</p>');
+    return;
+  }
+  buscarPorTexto(chassi);
+}
+
+function buscarPorModelo(texto) {
+  if (!texto || texto.trim().length < 2) {
+    mostrarVehicleIdResultado('<p class="ai-error">Digite ano e modelo (ex: Palio 2012).</p>');
+    return;
+  }
+  buscarPorTexto(texto);
+}
+
+function buscarPorTexto(texto) {
+  const textoNorm = normalizarTexto(texto);
+  const palavras = textoNorm.split(/\s+/).filter(p => p.length > 1);
+  
+  const resultados = state.dados.filter(item => {
+    const campos = normalizarTexto([item.marcaVeiculo, item.modeloVeiculo, item.anos].join(' '));
+    return palavras.some(p => campos.includes(p));
+  });
+
+  if (resultados.length === 0) {
+    mostrarVehicleIdResultado(`<p class="ai-error">Nenhuma caixa encontrada para "${texto}". Tente "Palio 2012", "Gol 2015", etc.</p>`);
+    return;
+  }
+
+  renderVehicleResults(resultados.map(r => ({caixaId: r.id})), texto);
+}
+
+function renderVehicleResults(resultados, busca) {
+  const caixas = resultados.map(r => {
+    const id = r.caixaId || r.id;
+    return state.dados.find(c => c.id === id);
+  }).filter(Boolean);
+
+  if (caixas.length === 0) {
+    mostrarVehicleIdResultado('<p class="ai-error">Nenhuma caixa encontrada.</p>');
+    return;
+  }
+
+  const html = caixas.map(item => `
+    <div class="vehicle-result-card" data-id="${item.id}">
+      <div class="vehicle-result-header">
+        <span class="vehicle-result-brand">${item.marcaVeiculo}</span>
+        <span class="vehicle-result-type ${item.tipoCaixa}">${obterLabelTipo(item.tipoCaixa)}</span>
+      </div>
+      <h4 class="vehicle-result-title">${item.modeloVeiculo}</h4>
+      <p class="vehicle-result-years">${item.anos} | ${item.fabricanteCaixa}</p>
+      <p class="vehicle-result-sintoma">Sintoma: ${item.sintomasComuns[0]}</p>
+      <div class="vehicle-result-price">
+        <span>Kit de Reparo:</span>
+        <strong>${item.precoKitReparo || 'Consultar'}</strong>
+      </div>
+      <button class="vehicle-result-btn" onclick="abrirModal('${item.id}')">
+        Ver procedimento completo →
+      </button>
+    </div>
+  `).join('');
+
+  mostrarVehicleIdResultado(`
+    <div class="vehicle-results-header">
+      <strong>${caixas.length} caixa(s)</strong> encontrada(s) para "${busca}"
+    </div>
+    <div class="vehicle-results-grid">${html}</div>
+  `);
+}
+
+function mostrarVehicleIdResultado(html) {
+  const container = document.getElementById('vehicleIdResults');
+  if (!container) return;
+  container.innerHTML = html;
+  container.style.display = 'block';
+}
+
+// =========================================
 // WIDGET: MECÂNICO VIRTUAL (IA)
 // =========================================
 function perguntarIA(pergunta) {
@@ -105,8 +247,16 @@ function perguntarIA(pergunta) {
   const perguntaNorm = normalizarTexto(pergunta);
   const palavras = perguntaNorm.split(/\s+/).filter(p => p.length > 2);
 
-  // Busca inteligente no catálogo
-  const resultados = state.dados.map(item => {
+  // Busca primeiro na base de diagnóstico
+  let diagnosticoMatches = [];
+  if (typeof baseDiagnostico !== 'undefined') {
+    diagnosticoMatches = baseDiagnostico.filter(d => {
+      return d.sintomas.some(s => palavras.some(p => s.includes(p)));
+    });
+  }
+
+  // Busca no catálogo
+  const caixaMatches = state.dados.map(item => {
     let score = 0;
     const textoItem = normalizarTexto([
       item.marcaVeiculo,
@@ -115,7 +265,6 @@ function perguntarIA(pergunta) {
       item.fabricanteCaixa,
       ...(item.sintomasComuns || []),
       ...(item.defeitosDetalhados || []).map(d => d.defeito),
-      ...(item.defeitosDetalhados || []).map(d => d.causaRaiz),
       item.observacoes
     ].join(' '));
 
@@ -123,7 +272,6 @@ function perguntarIA(pergunta) {
       if (textoItem.includes(palavra)) score += 1;
     }
 
-    // Bônus para palavras-chave específicas
     if (perguntaNorm.includes('vazamento') && item.sintomasComuns.some(s => s.toLowerCase().includes('vazamento'))) score += 3;
     if (perguntaNorm.includes('folga') && item.sintomasComuns.some(s => s.toLowerCase().includes('folga'))) score += 3;
     if (perguntaNorm.includes('pesada') && item.sintomasComuns.some(s => s.toLowerCase().includes('pesada'))) score += 3;
@@ -132,7 +280,7 @@ function perguntarIA(pergunta) {
     return { item, score };
   }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).slice(0, 5);
 
-  if (resultados.length === 0) {
+  if (diagnosticoMatches.length === 0 && caixaMatches.length === 0) {
     mostrarAIResultado(`
       <div class="ai-empty">
         <p>Não encontrei no catálogo uma caixa que corresponda exatamente a essa descrição.</p>
@@ -142,7 +290,26 @@ function perguntarIA(pergunta) {
     return;
   }
 
-  const html = resultados.map(r => {
+  // Renderiza diagnóstico primeiro
+  let diagnosticoHtml = '';
+  if (diagnosticoMatches.length > 0) {
+    diagnosticoHtml = `
+      <div class="ai-diagnostico-section">
+        <div class="ai-diagnostico-title">🔧 Diagnóstico Preliminar</div>
+        ${diagnosticoMatches.map(d => `
+          <div class="ai-diagnostico-card">
+            <div class="ai-diagnostico-defeito">${d.defeito}</div>
+            <div class="ai-diagnostico-meta">
+              <span class="ai-diagnostico-urgencia ${d.urgencia}">Urgência: ${d.urgencia.toUpperCase()}</span>
+              <span class="ai-diagnostico-custo">Custo: ${d.custoEstimado}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  const caixaHtml = caixaMatches.map(r => {
     const item = r.item;
     const defeitosRelevantes = (item.defeitosDetalhados || []).filter(d => {
       const textoDefeito = normalizarTexto(d.defeito + ' ' + d.causaRaiz + ' ' + d.sintomasVisuais);
@@ -165,6 +332,9 @@ function perguntarIA(pergunta) {
         <h4 class="ai-result-title">${item.modeloVeiculo}</h4>
         <p class="ai-result-years">${item.anos} | ${item.fabricanteCaixa}</p>
         <p class="ai-result-sintoma">Sintoma: ${item.sintomasComuns[0]}</p>
+        <div class="ai-result-price">
+          <span>Kit Reparo:</span> <strong>${item.precoKitReparo || 'Consultar'}</strong>
+        </div>
         ${defeitosHtml}
         <button class="ai-result-btn" onclick="abrirModal('${item.id}')">
           Ver procedimento completo →
@@ -174,10 +344,11 @@ function perguntarIA(pergunta) {
   }).join('');
 
   mostrarAIResultado(`
+    ${diagnosticoHtml}
     <div class="ai-results-header">
-      <strong>${resultados.length} resultado(s)</strong> encontrado(s) para "${pergunta}"
+      <strong>${caixaMatches.length} caixa(s)</strong> relacionada(s) a "${pergunta}"
     </div>
-    <div class="ai-results-grid">${html}</div>
+    <div class="ai-results-grid">${caixaHtml}</div>
   `);
 }
 
@@ -581,10 +752,29 @@ function renderModalContent(item) {
     <div class="modal-section">
       <div class="modal-section-title">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-        Códigos de Referência
+        Referências de Peças — Clique para buscar no Google
       </div>
-      <div class="tags-list">
-        ${item.codigos.map(c => `<span class="tag code">${c}</span>`).join('')}
+      <div class="referencias-list">
+        ${item.codigos.map(c => {
+          const ref = typeof referenciasPecas !== 'undefined' ? referenciasPecas[c] : null;
+          const desc = ref ? ref.descricao : 'Referência de peça';
+          const preco = ref ? ref.precoKit : 'Consultar';
+          const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(c + ' ' + desc)}`;
+          return `
+            <a href="${googleUrl}" target="_blank" rel="noopener" class="referencia-item">
+              <div class="referencia-code">${c}</div>
+              <div class="referencia-desc">${desc}</div>
+              <div class="referencia-preco">Kit: ${preco}</div>
+              <div class="referencia-action">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buscar
+              </div>
+            </a>
+          `;
+        }).join('')}
+      </div>
+      <div class="referencias-kit-info">
+        <strong>⚠️ Importante:</strong> As caixas de direção deste modelo devem ser reparadas com o <strong>kit completo</strong> (retentor + bucha + anéis + vedantes). Preço do kit: <strong>${item.precoKitReparo || 'Consultar'}</strong>
       </div>
     </div>
 

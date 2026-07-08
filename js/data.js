@@ -4,6 +4,855 @@
 // Gerado em: 2026-07-08
 // Total de caixas: 86
 
+// =========================================
+// REFERÊNCIAS DE PEÇAS — Descrição e Preços
+// =========================================
+const referenciasPecas = {
+  "16900162S": {
+    "descricao": "Caixa de direção hidráulica TRW - Palio/Siena/Strada/Idea 2001-2016",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 350-650"
+  },
+  "5173.7077": {
+    "descricao": "Kit de reparo completo caixa de direção DHB - Palio/Siena",
+    "tipo": "kit_reparo",
+    "precoKit": "R$ 85-150"
+  },
+  "5180.3201": {
+    "descricao": "Caixa de direção hidráulica remanufaturada - Palio/Siena",
+    "tipo": "caixa_reman",
+    "precoKit": "R$ 280-450"
+  },
+  "PSA5202": {
+    "descricao": "Caixa de direção hidráulica - Aplicações PSA/Fiat",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 320-580"
+  },
+  "TRW12030": {
+    "descricao": "Caixa de direção hidráulica TRW - Linha Fiat Fire",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 380-620"
+  },
+  "DHB-12000": {
+    "descricao": "Caixa de direção hidráulica DHB - Palio/Siena 1ª geração",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 300-550"
+  },
+  "5173.3010": {
+    "descricao": "Kit de reparo caixa direção DHB - Palio/Siena 1ª geração",
+    "tipo": "kit_reparo",
+    "precoKit": "R$ 75-140"
+  },
+  "5173.3020": {
+    "descricao": "Retentor e vedantes caixa direção DHB - Palio/Siena",
+    "tipo": "kit_vedacao",
+    "precoKit": "R$ 45-90"
+  },
+  "16900255S": {
+    "descricao": "Caixa de direção hidráulica DHB/TRW - Gol/Voyage/Fox G5-G7",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 400-700"
+  },
+  "5U1.423.051": {
+    "descricao": "Caixa de direção hidráulica original VW - Gol G5/G6/G7",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 450-800"
+  },
+  "5U1423051": {
+    "descricao": "Caixa de direção hidráulica - Gol/Voyage/Saveiro G5-G7",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 380-650"
+  },
+  "DHB52050": {
+    "descricao": "Caixa de direção hidráulica DHB - Volkswagen G5 em diante",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 350-600"
+  },
+  "DHB-52000": {
+    "descricao": "Caixa de direção hidráulica DHB - Gol/Parati/Saveiro G1-G4",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 280-500"
+  },
+  "377.422.051": {
+    "descricao": "Caixa de direção hidráulica original VW - Gol G1-G4",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 320-550"
+  },
+  "377422051R": {
+    "descricao": "Caixa de direção hidráulica remanufaturada - Gol/Parati",
+    "tipo": "caixa_reman",
+    "precoKit": "R$ 250-480"
+  },
+  "DHB52000": {
+    "descricao": "Caixa de direção hidráulica DHB - Volkswagen G1-G4",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 300-520"
+  },
+  "153504513": {
+    "descricao": "Caixa de direção hidráulica DHB/Saginaw - Corsa/Celta/Classic",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 280-500"
+  },
+  "22026": {
+    "descricao": "Kit de reparo completo caixa de direção - Corsa/Celta/Classic",
+    "tipo": "kit_reparo",
+    "precoKit": "R$ 65-120"
+  },
+  "22114": {
+    "descricao": "Retentor e vedantes caixa direção - Corsa/Celta",
+    "tipo": "kit_vedacao",
+    "precoKit": "R$ 35-75"
+  },
+  "NCDH30003": {
+    "descricao": "Caixa de direção hidráulica - Chevrolet Corsa/Celta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 300-520"
+  },
+  "JRP1382": {
+    "descricao": "Caixa de direção hidráulica - GM Corsa/Celta/Prisma",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 320-550"
+  },
+  "DHB-53000": {
+    "descricao": "Caixa de direção hidráulica DHB - GM Corsa/Celta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 290-510"
+  },
+  "93374629": {
+    "descricao": "Caixa de direção hidráulica - GM Celta/Classic/Prisma",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 280-500"
+  },
+  "26042352": {
+    "descricao": "Caixa de direção hidráulica - GM Chevrolet",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 300-520"
+  },
+  "JRP1427": {
+    "descricao": "Caixa de direção hidráulica TRW/Ford Visteon - Ka/Fiesta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 320-580"
+  },
+  "16900485S": {
+    "descricao": "Caixa de direção hidráulica - Ford Ka/Fiesta/Ecosport",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 350-600"
+  },
+  "9S653200AB": {
+    "descricao": "Caixa de direção hidráulica original Ford - Ka/Fiesta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 400-680"
+  },
+  "26122": {
+    "descricao": "Kit de reparo caixa de direção - Ford Ka/Fiesta",
+    "tipo": "kit_reparo",
+    "precoKit": "R$ 70-130"
+  },
+  "36204": {
+    "descricao": "Retentor e vedantes caixa direção - Ford Ka/Fiesta",
+    "tipo": "kit_vedacao",
+    "precoKit": "R$ 40-85"
+  },
+  "VIST-12000": {
+    "descricao": "Caixa de direção hidráulica Visteon - Ford Ka/Fiesta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 330-570"
+  },
+  "2S65-3200-AD": {
+    "descricao": "Caixa de direção hidráulica original Ford - Ka/Fiesta",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 420-700"
+  },
+  "2S653200AD": {
+    "descricao": "Caixa de direção hidráulica - Ford Ka/Fiesta 2002-2014",
+    "tipo": "caixa_completa",
+    "precoKit": "R$ 350-600"
+  },
+  "16150844S": {
+    "descricao": "Referência para caixa de direção TRW / DHB - Palio (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "CX33844": {
+    "descricao": "Referência para caixa de direção TRW / DHB - Palio (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "16900566S": {
+    "descricao": "Referência para caixa de direção TRW / DHB / Jtekt - Palio / Siena / Weekend",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "A0039376S": {
+    "descricao": "Referência para caixa de direção TRW / DHB / Jtekt - Palio / Siena / Weekend",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "15900137S": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Uno (antigo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "21245": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Uno (antigo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8028": {
+    "descricao": "Referência para caixa de direção TRW - Punto",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8005": {
+    "descricao": "Referência para caixa de direção TRW - Punto",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8007": {
+    "descricao": "Referência para caixa de direção TRW - Punto",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8140": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Doblo",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8320": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Doblo",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "BA8447": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Doblo",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "JRM635": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Toro",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "53485992": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Toro",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "51967456": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Toro",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7117136020": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Toro",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "JRM660": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Argo / Cronos",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7097301": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Argo / Cronos",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "52178425": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Argo / Cronos",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "52221798": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Argo / Cronos",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "52022908": {
+    "descricao": "Referência para caixa de direção TRW / Jtekt - Mobi",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7117136010": {
+    "descricao": "Referência para caixa de direção Jtekt / TRW - Toro (mecânica p/ EPS)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "52060738": {
+    "descricao": "Referência para caixa de direção Jtekt / TRW - Toro (mecânica p/ EPS)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "5U1422055A": {
+    "descricao": "Referência para caixa de direção TRW - Gol G1 / G2 / G3 / G4",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "5U1422055D/G/J/K/L": {
+    "descricao": "Referência para caixa de direção TRW / Yokomitsu - Gol G5 / G6",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "6415ST": {
+    "descricao": "Referência para caixa de direção TRW / Yokomitsu - Gol G5 / G6",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "6416": {
+    "descricao": "Referência para caixa de direção TRW / Yokomitsu - Gol G5 / G6",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "CX450255": {
+    "descricao": "Referência para caixa de direção TRW / Koyo (Jtekt) - Polo (gerações até 2017)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "JRM669": {
+    "descricao": "Referência para caixa de direção TRW - Polo (novo) / Virtus / T-Cross / Nivus",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "16900255S (variante)": {
+    "descricao": "Referência para caixa de direção TRW - Jetta 2.0",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "1K1423051": {
+    "descricao": "Referência para caixa de direção ZF / TRW - Golf (gerações anteriores)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "1K1423055": {
+    "descricao": "Referência para caixa de direção ZF / TRW - Golf (gerações anteriores)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "93389866": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Prisma (novo) / Onix (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "93344883": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Prisma (novo) / Onix (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "93384074": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Prisma (novo) / Onix (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "13286687": {
+    "descricao": "Referência para caixa de direção ZF / TRW - Cruze",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "34675": {
+    "descricao": "Referência para caixa de direção ZF / TRW - Cruze",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "33401": {
+    "descricao": "Referência para caixa de direção TRW / ZF - Focus",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "33402": {
+    "descricao": "Referência para caixa de direção TRW / ZF - Focus",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "33409": {
+    "descricao": "Referência para caixa de direção TRW / ZF - Focus",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "33405": {
+    "descricao": "Referência para caixa de direção TRW - Ranger (2.5 / 3.0)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "33406": {
+    "descricao": "Referência para caixa de direção TRW - Ranger (2.5 / 3.0)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "680014-DH": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Clio",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "680037-DH": {
+    "descricao": "Referência para caixa de direção DHB / TRW - Clio",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "JRP1425": {
+    "descricao": "Referência para caixa de direção TRW - Sandero / Logan (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "16900238S": {
+    "descricao": "Referência para caixa de direção TRW - Sandero / Logan (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "FT3014": {
+    "descricao": "Referência para caixa de direção TRW - Sandero / Logan (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "300014": {
+    "descricao": "Referência para caixa de direção TRW - Sandero / Logan (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7150616001": {
+    "descricao": "Referência para caixa de direção TRW - Sandero / Logan (1ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "490014306R": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Sandero / Logan (2ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "29128": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Sandero / Logan (2ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "300017ST": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Sandero / Logan (2ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "6516ST": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Sandero / Logan (2ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7150616010": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Sandero / Logan (2ª geração)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "4551002220": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (geração anterior)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "17052": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (geração anterior)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "4551002670": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) / TRW - Corolla (E140/E150)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7785000052": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) / TRW - Corolla (E140/E150)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "JRM620": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) / TRW - Corolla (E140/E150)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "NCDE70101": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) / TRW - Corolla (E140/E150)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "455100D360": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (novo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "17059": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (novo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7785000053": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (novo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "7785000054": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Corolla (novo)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "NCD70103 (mecânica)": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Etios",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "17059 (elétrica)": {
+    "descricao": "Referência para caixa de direção Jtekt (Koyo) - Etios",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "442000K040": {
+    "descricao": "Referência para caixa de direção Koyo (Jtekt) - Hilux (Pitbull / SW4)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "442000K170": {
+    "descricao": "Referência para caixa de direção Koyo (Jtekt) - Hilux (Pitbull / SW4)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "442000K230": {
+    "descricao": "Referência para caixa de direção Koyo (Jtekt) - Hilux (Pitbull / SW4)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "27001": {
+    "descricao": "Referência para caixa de direção Koyo (Jtekt) - Hilux (Pitbull / SW4)",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "577001S000": {
+    "descricao": "Referência para caixa de direção Hyundai / Koyo (Jtekt) - HB20 / HB20S",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "50303MK": {
+    "descricao": "Referência para caixa de direção Hyundai / Koyo (Jtekt) - HB20 / HB20S",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "10100205": {
+    "descricao": "Referência para caixa de direção Hyundai / Koyo (Jtekt) - HB20 / HB20S",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "CX958112": {
+    "descricao": "Referência para caixa de direção TRW / DHB - 206",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  },
+  "INDISA": {
+    "descricao": "Referência para caixa de direção TRW / DHB - 206",
+    "tipo": "referencia",
+    "precoKit": "R$ 80-200"
+  }
+};
+
+// =========================================
+// MAPEAMENTO DE VEÍCULOS → CAIXA
+// =========================================
+const mapeamentoVeiculos = [
+  {
+    "placaPrefixo": [
+      "ABC",
+      "DEF",
+      "GHI",
+      "JKL"
+    ],
+    "modelo": "Palio",
+    "anos": "2001-2016",
+    "marca": "Fiat",
+    "caixaId": "fiat-palio-siena-strada-trw-01"
+  },
+  {
+    "placaPrefixo": [
+      "MNO",
+      "PQR"
+    ],
+    "modelo": "Siena",
+    "anos": "2001-2016",
+    "marca": "Fiat",
+    "caixaId": "fiat-palio-siena-strada-trw-01"
+  },
+  {
+    "placaPrefixo": [
+      "STU",
+      "VWX"
+    ],
+    "modelo": "Strada",
+    "anos": "2002-2016",
+    "marca": "Fiat",
+    "caixaId": "fiat-palio-siena-strada-trw-01"
+  },
+  {
+    "placaPrefixo": [
+      "YZA"
+    ],
+    "modelo": "Idea",
+    "anos": "2006-2016",
+    "marca": "Fiat",
+    "caixaId": "fiat-palio-siena-strada-trw-01"
+  },
+  {
+    "placaPrefixo": [
+      "BCD"
+    ],
+    "modelo": "Palio",
+    "anos": "1996-2000",
+    "marca": "Fiat",
+    "caixaId": "fiat-palio-siena-strada-dhb-01"
+  },
+  {
+    "placaPrefixo": [
+      "EFG",
+      "HIJ"
+    ],
+    "modelo": "Gol",
+    "anos": "2008-2022",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-08"
+  },
+  {
+    "placaPrefixo": [
+      "KLM",
+      "NOP"
+    ],
+    "modelo": "Voyage",
+    "anos": "2009-2022",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-08"
+  },
+  {
+    "placaPrefixo": [
+      "QRS",
+      "TUV"
+    ],
+    "modelo": "Saveiro",
+    "anos": "2009-2022",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-08"
+  },
+  {
+    "placaPrefixo": [
+      "WXY"
+    ],
+    "modelo": "Fox",
+    "anos": "2010-2014",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-08"
+  },
+  {
+    "placaPrefixo": [
+      "ZAB"
+    ],
+    "modelo": "Gol",
+    "anos": "1994-2008",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "CDE"
+    ],
+    "modelo": "Parati",
+    "anos": "1996-2008",
+    "marca": "Volkswagen",
+    "caixaId": "vw-gol-voyage-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "FGH"
+    ],
+    "modelo": "Corsa",
+    "anos": "1994-2002",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "IJK"
+    ],
+    "modelo": "Celta",
+    "anos": "2000-2016",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "LMN"
+    ],
+    "modelo": "Classic",
+    "anos": "2002-2016",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "OPQ"
+    ],
+    "modelo": "Prisma",
+    "anos": "2006-2012",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "RST"
+    ],
+    "modelo": "Agile",
+    "anos": "2009-2016",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "UVW"
+    ],
+    "modelo": "Montana",
+    "anos": "2011-2019",
+    "marca": "Chevrolet",
+    "caixaId": "gm-corsa-celta-dhb-94"
+  },
+  {
+    "placaPrefixo": [
+      "XYZ"
+    ],
+    "modelo": "Ka",
+    "anos": "2002-2014",
+    "marca": "Ford",
+    "caixaId": "ford-ka-fiesta-visteon-02"
+  },
+  {
+    "placaPrefixo": [
+      "AAB"
+    ],
+    "modelo": "Fiesta",
+    "anos": "2002-2014",
+    "marca": "Ford",
+    "caixaId": "ford-ka-fiesta-visteon-02"
+  },
+  {
+    "placaPrefixo": [
+      "CCD"
+    ],
+    "modelo": "Ecosport",
+    "anos": "2003-2012",
+    "marca": "Ford",
+    "caixaId": "ford-ka-fiesta-visteon-02"
+  }
+];
+
+// =========================================
+// BASE DE DIAGNÓSTICO POR SINTOMAS
+// =========================================
+const baseDiagnostico = [
+  {
+    "sintomas": [
+      "vazamento",
+      "retentor",
+      "cremalheira",
+      "fluido",
+      "oleo"
+    ],
+    "caixaIds": [
+      "fiat-palio-siena-strada-trw-01",
+      "vw-gol-voyage-dhb-08",
+      "gm-corsa-celta-dhb-94",
+      "ford-ka-fiesta-visteon-02"
+    ],
+    "defeito": "Retentor da cremalheira degradado",
+    "urgencia": "alta",
+    "custoEstimado": "R$ 80-150 (kit de reparo)"
+  },
+  {
+    "sintomas": [
+      "folga",
+      "volante",
+      "vago",
+      "batida",
+      "direcao solta"
+    ],
+    "caixaIds": [
+      "fiat-palio-siena-strada-trw-01",
+      "vw-gol-voyage-dhb-94",
+      "gm-corsa-celta-dhb-94"
+    ],
+    "defeito": "Folga excessiva na cremalheira ou bucha do braço pitman",
+    "urgencia": "media",
+    "custoEstimado": "R$ 150-300 (ajuste ou troca)"
+  },
+  {
+    "sintomas": [
+      "direcao pesada",
+      "pesada",
+      "dura",
+      "dificil esterçar"
+    ],
+    "caixaIds": [
+      "fiat-palio-siena-strada-trw-01",
+      "vw-gol-voyage-dhb-08",
+      "ford-ka-fiesta-visteon-02"
+    ],
+    "defeito": "Bomba hidráulica fraca ou selim apertado demais",
+    "urgencia": "media",
+    "custoEstimado": "R$ 200-400 (bomba ou ajuste)"
+  },
+  {
+    "sintomas": [
+      "ruido",
+      "chiado",
+      "barulho",
+      "rangido",
+      "estrondo"
+    ],
+    "caixaIds": [
+      "fiat-palio-siena-strada-trw-01",
+      "vw-gol-voyage-dhb-94",
+      "ford-ka-fiesta-visteon-02"
+    ],
+    "defeito": "Desgaste do pinhão ou cremalheira, ou falta de fluido",
+    "urgencia": "media",
+    "custoEstimado": "R$ 300-700 (reparo ou caixa nova)"
+  },
+  {
+    "sintomas": [
+      "vazamento",
+      "pinhao",
+      "coluna",
+      "superior"
+    ],
+    "caixaIds": [
+      "ford-ka-fiesta-visteon-02"
+    ],
+    "defeito": "Retentor do pinhão degradado",
+    "urgencia": "alta",
+    "custoEstimado": "R$ 70-140 (kit de reparo)"
+  },
+  {
+    "sintomas": [
+      "vazamento completo",
+      "muito fluido",
+      "poça grande"
+    ],
+    "caixaIds": [
+      "vw-gol-voyage-dhb-94",
+      "gm-corsa-celta-dhb-94"
+    ],
+    "defeito": "Vedação interna comprometida - necessário kit completo",
+    "urgencia": "alta",
+    "custoEstimado": "R$ 80-160 (kit completo)"
+  },
+  {
+    "sintomas": [
+      "luz eps",
+      "eps",
+      "eletrica",
+      "direcao travando"
+    ],
+    "caixaIds": [],
+    "defeito": "Falha no sistema de direção elétrica EPS - necessário scanner",
+    "urgencia": "alta",
+    "custoEstimado": "R$ 400-1200 (diagnóstico + reparo)"
+  }
+];
+
 const catalogoCaixasDirecao = [
   {
     "id": "fiat-palio-siena-strada-trw-01",
@@ -150,7 +999,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manter nível de fluido correto. Sangrar o sistema após qualquer intervenção na direção hidráulica."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "fiat-palio-siena-strada-dhb-01",
@@ -279,7 +1129,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "vw-gol-voyage-dhb-08",
@@ -412,7 +1263,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Não forçar a direção no limite com o veículo parado. Verificar correia do alternador/bomba."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "vw-gol-voyage-dhb-94",
@@ -543,7 +1395,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "gm-corsa-celta-dhb-94",
@@ -686,7 +1539,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Ajustar o selim a cada 40.000 km. Lubrificar o mecanismo de ajuste."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-ka-fiesta-visteon-02",
@@ -808,7 +1662,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "alta",
         "prevenção": "Usar retentor de qualidade. Verificar nível do fluido a cada revisão."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-palio--1--gera--o--7",
@@ -938,7 +1793,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-palio---siena---week-8",
@@ -1071,7 +1927,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-uno--antigo--9",
@@ -1200,7 +2057,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 60-120"
   },
   {
     "id": "-novo-uno---vivace----10",
@@ -1326,7 +2184,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-punto-11",
@@ -1452,7 +2311,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-idea-12",
@@ -1577,7 +2437,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-doblo-13",
@@ -1704,7 +2565,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-strada-14",
@@ -1832,7 +2694,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-toro-15",
@@ -1941,7 +2804,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "-argo---cronos-16",
@@ -2051,7 +2915,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "-mobi-17",
@@ -2155,7 +3020,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "-toro--mec-nica-p--ep-18",
@@ -2254,7 +3120,8 @@ const catalogoCaixasDirecao = [
       }
     ],
     "cuidadosEspeciais": "⚠️ NUNCA use martelo de ferro na carcaça. ⚠️ Mantenha a referência do cardã da coluna. ⚠️ Descarte adequado do fluido hidráulico. ⚠️ Não reutilize retentores ou anéis. ⚠️ Teste no veículo antes de entregar.",
-    "defeitosDetalhados": []
+    "defeitosDetalhados": [],
+    "precoKitReparo": "R$ 60-120"
   },
   {
     "id": "-gol-g1---g2---g3---g-19",
@@ -2385,7 +3252,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-gol-g5---g6-20",
@@ -2517,7 +3385,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-voyage-g5---g6-21",
@@ -2643,7 +3512,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-fox---spacefox---cro-22",
@@ -2773,7 +3643,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-polo--gera--es-at--2-23",
@@ -2900,7 +3771,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-polo--novo----virtus-24",
@@ -3006,7 +3878,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "-jetta-2-0-25",
@@ -3127,7 +4000,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-golf--gera--es-anter-26",
@@ -3254,7 +4128,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "-saveiro-g5---g6---g7-27",
@@ -3379,7 +4254,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-corsa--1--gera--o--28",
@@ -3511,7 +4387,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-corsa-classic-29",
@@ -3641,7 +4518,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-celta-30",
@@ -3771,7 +4649,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-prisma--1--gera--o--31",
@@ -3898,7 +4777,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-prisma--novo----onix-32",
@@ -4026,7 +4906,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-agile-33",
@@ -4153,7 +5034,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-montana--frente-agil-34",
@@ -4280,7 +5162,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-tigra-35",
@@ -4405,7 +5288,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "chevrolet-onix--novo----onix-p-36",
@@ -4507,7 +5391,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "chevrolet-cruze-37",
@@ -4630,7 +5515,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-ka--gera--o-zetec-ro-38",
@@ -4760,7 +5646,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-fiesta--gera--o-amaz-39",
@@ -4889,7 +5776,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-ecosport--gera--o-an-40",
@@ -5016,7 +5904,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-focus-41",
@@ -5143,7 +6032,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-ranger--2-5---3-0--42",
@@ -5267,7 +6157,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "ford-ka--novo----new-fies-43",
@@ -5369,7 +6260,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "renault-clio-44",
@@ -5495,7 +6387,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "renault-sandero---logan--1---45",
@@ -5624,7 +6517,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "renault-sandero---logan--2---46",
@@ -5753,7 +6647,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "renault-duster-47",
@@ -5879,7 +6774,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "renault-kwid-48",
@@ -5972,7 +6868,8 @@ const catalogoCaixasDirecao = [
       }
     ],
     "cuidadosEspeciais": "⚠️ NUNCA use martelo de ferro na carcaça. ⚠️ Mantenha a referência do cardã da coluna. ⚠️ Descarte adequado do fluido hidráulico. ⚠️ Não reutilize retentores ou anéis. ⚠️ Teste no veículo antes de entregar.",
-    "defeitosDetalhados": []
+    "defeitosDetalhados": [],
+    "precoKitReparo": "R$ 60-120"
   },
   {
     "id": "renault-fluence-49",
@@ -6094,7 +6991,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "toyota-corolla--gera--o-ant-50",
@@ -6219,7 +7117,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "toyota-corolla--e140-e150--51",
@@ -6326,7 +7225,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "toyota-corolla--novo--52",
@@ -6432,7 +7332,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "toyota-etios-53",
@@ -6536,7 +7437,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "toyota-yaris-54",
@@ -6636,7 +7538,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "toyota-hilux--pitbull---sw4-55",
@@ -6763,7 +7666,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "toyota-hilux--nova----sw4-56",
@@ -6886,7 +7790,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "toyota-rav4-57",
@@ -6974,7 +7879,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "honda-civic--gera--es-6-8--58",
@@ -7095,7 +8001,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "honda-new-civic--g8--59",
@@ -7216,7 +8123,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "honda-civic--g9-g10--60",
@@ -7319,7 +8227,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "honda-city-61",
@@ -7419,7 +8328,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "honda-fit-62",
@@ -7522,7 +8432,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "honda-hr-v-63",
@@ -7624,7 +8535,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "honda-cr-v-64",
@@ -7712,7 +8624,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "hyundai-hb20---hb20s-65",
@@ -7839,7 +8752,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "hyundai-hb20--nova-gera--o--66",
@@ -7941,7 +8855,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "hyundai-creta-67",
@@ -8042,7 +8957,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "hyundai-tucson--gera--es-ant-68",
@@ -8164,7 +9080,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "hyundai-tucson--nova--69",
@@ -8265,7 +9182,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "hyundai-i30---elantra-70",
@@ -8387,7 +9305,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-206-71",
@@ -8517,7 +9436,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-207-72",
@@ -8644,7 +9564,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-208-73",
@@ -8747,7 +9668,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-307-74",
@@ -8875,7 +9797,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-hoggar-75",
@@ -9001,7 +9924,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-308---408-76",
@@ -9103,7 +10027,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-partner-77",
@@ -9226,7 +10151,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-2008---3008-78",
@@ -9328,7 +10254,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-c3--1--gera--o--79",
@@ -9456,7 +10383,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-c3--novo----c3-aircr-80",
@@ -9559,7 +10487,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-c4---c4-lounge---c4--81",
@@ -9651,7 +10580,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-aircross-82",
@@ -9779,7 +10709,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-c4-cactus-83",
@@ -9880,7 +10811,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-xsara---picasso-84",
@@ -10006,7 +10938,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 80-160"
   },
   {
     "id": "peugeot-berlingo-85",
@@ -10108,7 +11041,8 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   },
   {
     "id": "peugeot-jumpy---spacetourer-86",
@@ -10208,6 +11142,7 @@ const catalogoCaixasDirecao = [
         "prioridade": "média",
         "prevenção": "Manutenção preventiva a cada 60.000 km. Verificar nível de fluido."
       }
-    ]
+    ],
+    "precoKitReparo": "R$ 200-500"
   }
 ];
