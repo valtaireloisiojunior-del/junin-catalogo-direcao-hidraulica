@@ -1845,3 +1845,254 @@ input, select { font-family: inherit; }
   .pricing-total-value { font-size: 1.3rem; }
   .vehicle-id-header h3, .pricing-reference-header h3, .ai-widget-header h3 { font-size: 1rem; }
 }
+
+/* =========================================
+   AFFILIATE & MONETIZATION STYLES
+   ========================================= */
+
+/* Botões de afiliado nos cards */
+.card-affiliate {
+  padding: 0 1.25rem 0.75rem;
+  border-top: 1px solid var(--border-light);
+  margin-top: 0.5rem;
+}
+
+.card-affiliate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(135deg, #ffe600 0%, #ffc400 100%);
+  color: #2d3277;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #e6cf00;
+}
+
+.card-affiliate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 198, 0, 0.3);
+  background: linear-gradient(135deg, #ffea00 0%, #ffd000 100%);
+}
+
+/* Seção de afiliado na tabela de preços */
+.affiliate-section {
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.affiliate-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.affiliate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.affiliate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.affiliate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.affiliate-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.affiliate-text {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.affiliate-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.9);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.affiliate-ml {
+  background: linear-gradient(135deg, #fff8db 0%, #fff3cd 100%);
+  border-color: #ffe066;
+  color: #2d3277;
+}
+
+.affiliate-ml:hover {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffec99 100%);
+}
+
+.affiliate-cdp {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-color: #81c784;
+  color: #1b5e20;
+}
+
+.affiliate-cdp:hover {
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+}
+
+.affiliate-google {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-color: #64b5f6;
+  color: #0d47a1;
+}
+
+.affiliate-google:hover {
+  background: linear-gradient(135deg, #bbdefb 0%, #90caf9 100%);
+}
+
+/* Modal affiliate section */
+.modal-affiliate-section {
+  background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+  border: 2px solid var(--accent-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.modal-affiliate-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 0.75rem;
+}
+
+.modal-affiliate-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-affiliate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.modal-affiliate-btn:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.modal-affiliate-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.modal-affiliate-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-affiliate-text strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.modal-affiliate-text span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.modal-affiliate-arrow {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.modal-affiliate-btn:hover .modal-affiliate-arrow {
+  transform: translateX(4px);
+}
+
+.modal-affiliate-ml {
+  background: linear-gradient(135deg, #fff8db 0%, #fff3cd 100%);
+  border-color: #ffe066;
+}
+
+.modal-affiliate-google {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-color: #64b5f6;
+}
+
+/* AdSense placeholders */
+.ad-adsense {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 1px dashed var(--border);
+}
+
+.ad-adsense ins {
+  display: block;
+  width: 100%;
+}
+
+/* Mobile fixes para afiliados */
+@media (max-width: 640px) {
+  .affiliate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .affiliate-btn {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .card-affiliate {
+    padding: 0 1rem 0.5rem;
+  }
+
+  .card-affiliate-btn {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .modal-affiliate-section {
+    padding: 1rem;
+  }
+
+  .modal-affiliate-btn {
+    padding: 0.7rem;
+  }
+}
