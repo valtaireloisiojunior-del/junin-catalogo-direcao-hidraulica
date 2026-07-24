@@ -1,5 +1,5 @@
 /**
- * VJ Direção Hidráulica — Aplicação Principal
+ * Junin Direção Hidráulica — Aplicação Principal
  * Vanilla JS ES6+, sem frameworks
  */
 
@@ -17,34 +17,6 @@ const state = {
 
 // Referências DOM (cache)
 const dom = {};
-
-// =========================================
-// AFILIADOS — Links de Monetização
-// =========================================
-function gerarLinkAfiliadoML(termo) {
-  // Substitua SEU_ID_ML pelo seu ID de afiliado do Mercado Livre
-  const afiliadoId = 'SEU_ID_ML';
-  const keyword = encodeURIComponent(termo);
-  return `https://www.mercadolivre.com.br/busca?afiliado=${afiliadoId}&keyword=${keyword}`;
-}
-
-function gerarLinkAfiliadoMLProduto(itemId) {
-  // Link direto para produto específico no ML
-  const afiliadoId = 'SEU_ID_ML';
-  return `https://produto.mercadolivre.com.br/${itemId}?afiliado=${afiliadoId}`;
-}
-
-function gerarLinkBuscaKit(marca, modelo) {
-  const termo = `kit reparo caixa direcao hidraulica ${marca} ${modelo}`;
-  return gerarLinkAfiliadoML(termo);
-}
-
-function gerarLinkBuscaCaixaRemanufaturada(marca, modelo) {
-  const termo = `caixa direcao hidraulica remanufaturada ${marca} ${modelo}`;
-  return gerarLinkAfiliadoML(termo);
-}
-
-
 
 // =========================================
 // INICIALIZAÇÃO
@@ -597,12 +569,6 @@ function renderCard(item, idx) {
         ${codigosVisiveis.map(c => `<span class="code-tag">${c}</span>`).join('')}
         ${maisCodigos ? `<span class="code-tag">${maisCodigos}</span>` : ''}
       </div>
-      <div class="card-affiliate">
-        <a href="${gerarLinkBuscaKit(item.marcaVeiculo, item.modeloVeiculo)}" target="_blank" rel="noopener" class="card-affiliate-btn" onclick="event.stopPropagation();">
-          <span>🛒</span>
-          <span>Comprar Kit de Reparo</span>
-        </a>
-      </div>
       <div class="card-footer">
         <div class="card-meta">
           <span class="difficulty-badge ${item.dificuldade || 'media'}">${obterLabelDificuldade(item.dificuldade)}</span>
@@ -753,35 +719,6 @@ function renderModalContent(item) {
       </div>
       <div class="referencias-kit-info">
         <strong>⚠️ Importante:</strong> As caixas de direção deste modelo devem ser reparadas com o <strong>kit completo</strong> (retentor + bucha + anéis + vedantes). Preço do kit: <strong>${item.precoKitReparo || 'Consultar'}</strong>
-      </div>
-      <div class="modal-affiliate-section">
-        <div class="modal-affiliate-title">🛒 Compre as Peças para este Modelo</div>
-        <div class="modal-affiliate-grid">
-          <a href="${gerarLinkBuscaKit(item.marcaVeiculo, item.modeloVeiculo)}" target="_blank" rel="noopener" class="modal-affiliate-btn modal-affiliate-ml">
-            <span class="modal-affiliate-icon">🛍️</span>
-            <div class="modal-affiliate-text">
-              <strong>Kit de Reparo</strong>
-              <span>Mercado Livre — Frete Grátis</span>
-            </div>
-            <span class="modal-affiliate-arrow">→</span>
-          </a>
-          <a href="${gerarLinkBuscaCaixaRemanufaturada(item.marcaVeiculo, item.modeloVeiculo)}" target="_blank" rel="noopener" class="modal-affiliate-btn modal-affiliate-ml">
-            <span class="modal-affiliate-icon">🔧</span>
-            <div class="modal-affiliate-text">
-              <strong>Caixa Remanufaturada</strong>
-              <span>Mercado Livre — Garantia</span>
-            </div>
-            <span class="modal-affiliate-arrow">→</span>
-          </a>
-          <a href="https://www.google.com/search?q=${encodeURIComponent('kit reparo caixa direcao ' + item.marcaVeiculo + ' ' + item.modeloVeiculo)}" target="_blank" rel="noopener" class="modal-affiliate-btn modal-affiliate-google">
-            <span class="modal-affiliate-icon">🔍</span>
-            <div class="modal-affiliate-text">
-              <strong>Comparar Preços</strong>
-              <span>Google — Melhor oferta</span>
-            </div>
-            <span class="modal-affiliate-arrow">→</span>
-          </a>
-        </div>
       </div>
     </div>
 
